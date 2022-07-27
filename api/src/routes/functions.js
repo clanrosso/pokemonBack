@@ -27,12 +27,15 @@ module.exports = {
       // mapeo el array de pokemons y hago una subrequest a la url
       pokemonsApi.map(async (p) => {
         let subRequest = await axios.get(p.url);
+        // Hago un array con las estaditicas
+        const statsArray = subRequest.data.stats;
         return {
           // para cada pokemon solo dejo los datos que necesito
           ID: subRequest.data.id,
           name: p.name,
           image: subRequest.data.sprites.other.home.front_default,
           type: subRequest.data.types.map((t) => t.type.name),
+          attack: findStats(statsArray, "attack", "base_stat"),
         };
       })
     );

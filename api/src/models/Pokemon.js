@@ -16,6 +16,9 @@ module.exports = (sequelize) => {
         unique: true,
         allowNull: false,
       },
+      image: {
+        type: DataTypes.STRING,
+      },
       height: {
         type: DataTypes.FLOAT,
         validate: {

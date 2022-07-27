@@ -29,6 +29,7 @@ module.exports = {
         let subRequest = await axios.get(p.url);
         return {
           // para cada pokemon solo dejo los datos que necesito
+          ID: subRequest.data.id,
           name: p.name,
           image: subRequest.data.sprites.other.home.front_default,
           type: subRequest.data.types.map((t) => t.type.name),

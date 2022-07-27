@@ -4,6 +4,7 @@ import {
   FILTER_BY_TYPE,
   FILTER_CREATED,
   GET_ALL_TYPES,
+  ORDER,
 } from "../actions/index";
 
 const initialState = {
@@ -25,10 +26,8 @@ const rootReducer = (state = initialState, action) => {
     case FILTER_CREATED:
       let pokemonsToRender = [];
       if (action.payload === "api") {
-        console.log("api");
         pokemonsToRender = state.allPokemons.filter((p) => !p.inDataBase);
       } else if (action.payload === "db") {
-        console.log("db");
         pokemonsToRender = state.allPokemons.filter((p) => p.inDataBase);
       } else {
         pokemonsToRender = state.allPokemons;
@@ -40,7 +39,6 @@ const rootReducer = (state = initialState, action) => {
 
     case FILTER_BY_TYPE:
       let pokemonsToRender2 = [];
-
       if (action.payload === "all") pokemonsToRender2 = state.allPokemons;
       else {
         const pokemonsStandard = state.allPokemons.map((p) => {
@@ -54,7 +52,6 @@ const rootReducer = (state = initialState, action) => {
             return p;
           }
         });
-
         pokemonsToRender2 = pokemonsStandard.filter((p) =>
           p.type?.includes(action.payload)
         );
@@ -62,6 +59,38 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemonsToRender: pokemonsToRender2,
+      };
+
+    case ORDER:
+      let sortedPokemons = [];
+      if (action.payload === "asc_alfabet") {
+        sortedPokemons = state.pokemonsToRender.sort((a, b) => {
+          if (a.name > b.name) return 1; // b queda a la izquierda
+          if (b.name > a.name) return -1; //  a queda a la izquierda
+          return 0;
+        });
+      } else if (action.payload === "desc_alfabet") {
+        sortedPokemons = state.pokemonsToRender.sort((a, b) => {
+          if (a.name > b.name) return -1; //  a queda a la izquierda
+          if (b.name > a.name) return 1; // b queda a la izquierda
+          return 0;
+        });
+      } else if (action.payload === "asc_attack") {
+        sortedPokemons = state.pokemonsToRender.sort((a, b) => {
+          if (a.attack > b.attack) return 1;
+          if (b.attack > a.attack) return -1;
+          return 0;
+        });
+      } else if (action.payload === "desc_attack") {
+        sortedPokemons = state.pokemonsToRender.sort((a, b) => {
+          if (a.attack > b.attack) return -1;
+          if (b.attack > a.attack) return 1;
+          return 0;
+        });
+      }
+      return {
+        ...state,
+        pokemonsToRender: sortedPokemons,
       };
 
     case GET_ALL_TYPES:

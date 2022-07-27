@@ -7,6 +7,7 @@ import {
   filterByType,
   filterCreated,
   getAllTypes,
+  order,
 } from "../../redux/actions/index";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import Paginado from "../Paginado/Paginado";
@@ -20,6 +21,7 @@ const Home = () => {
 
   const [currentPage, setCurrentPage] = React.useState(1);
   const [pokemonsPerPage] = React.useState(12);
+  const [orderBy, setOrderBy] = React.useState("");
 
   const lastPokemon = currentPage * pokemonsPerPage;
   const firstPokemon = lastPokemon - pokemonsPerPage;
@@ -52,6 +54,14 @@ const Home = () => {
     setCurrentPage(1);
   };
 
+  const handleOrder = (event) => {
+    event.preventDefault();
+    dispatch(order(event.target.value));
+    setCurrentPage(1);
+    setOrderBy(event.target.value);
+    console.log(orderBy);
+  };
+
   return (
     <div>
       <Link to={`/pokemon`}>Crear un nuevo Pokemon</Link>
@@ -72,13 +82,19 @@ const Home = () => {
               return <option value={t.name}>{t.name}</option>;
             })}
         </select>
-        <select>
-          <option value="asc-alfabet">De la A a la Z</option>
-          <option value="desc-alfabet">De la Z a la A</option>
+        <select onChange={(e) => handleOrder(e)}>
+          <option disabled selected>
+            Orden por alfabeto
+          </option>
+          <option value="asc_alfabet">De la A a la Z</option>
+          <option value="desc_alfabet">De la Z a la A</option>
         </select>
-        <select>
-          <option value="asc-attack">Los mas fuertes</option>
-          <option value="desc-attack">Los mas debiles</option>
+        <select onChange={(e) => handleOrder(e)}>
+          <option disabled selected>
+            Orden ataque
+          </option>
+          <option value="desc_attack">Los mas fuertes</option>
+          <option value="asc_attack">Los mas debiles</option>
         </select>
       </div>
       <Paginado
@@ -87,7 +103,6 @@ const Home = () => {
         changePage={changePage}
       />
 
-      {console.log(pokemonsFinal)}
       {pokemonsFinal &&
         pokemonsFinal.map((p) => {
           return (
@@ -100,6 +115,7 @@ const Home = () => {
                   type={p.type}
                   tipos={p.tipos}
                   inDataBase={p.inDataBase}
+                  attack={p.attack}
                 />
               </Link>
             </>

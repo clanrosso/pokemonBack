@@ -1,7 +1,7 @@
 import React from "react";
 
 // FUNCTIONAL COMPONENT!
-const PokemonCard = ({ name, type, tipos, image, inDataBase }) => {
+const PokemonCard = ({ name, type, tipos, image, inDataBase, attack }) => {
   return (
     <div>
       <img
@@ -18,6 +18,7 @@ const PokemonCard = ({ name, type, tipos, image, inDataBase }) => {
       ) : (
         <p>{`Tipo: ${type}`}</p>
       )}
+      <p>{`Ataque: ${attack}`}</p>
     </div>
   );
 };

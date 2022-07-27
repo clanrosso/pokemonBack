@@ -4,12 +4,13 @@ export const GET_ALL_P0KEMONS = "GET_ALL_P0KEMONS";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const FILTER_CREATED = "FILTER_CREATED";
 export const GET_ALL_TYPES = "GET_ALL_TYPES";
+export const ORDER = "ORDER";
 
 // el middleware "thunk", nos permite trabajar con acciones asincrónicas.
 // Necesitamos hacer uso de este middleware ya que peticiones al back siempre son asincrónicas,
 // , necesitamos ese "delay" para despachar nuestra action hasta que la data nos llegue.
 
-// Usar ruta para buscar todos los pokemons en nuestro back.
+// Usa ruta para buscar todos los pokemons en nuestro back.
 export const getAllPokemons = () => {
   return function (dispatch) {
     axios("http://localhost:3001/pokemons", {}).then((response) => {
@@ -34,12 +35,20 @@ export const filterCreated = (payload) => {
   };
 };
 
-// Usar ruta para buscar todos los pokemons en nuestro back.
+// Usa ruta para buscar todos los pokemons en nuestro back.
 export const getAllTypes = () => {
   return function (dispatch) {
     axios("http://localhost:3001/types", {}).then((response) => {
       return dispatch({ type: GET_ALL_TYPES, payload: response.data });
     });
+  };
+};
+
+// Accion para ordenar los pokemon por alfabeto o ataque
+export const order = (payload) => {
+  return {
+    type: ORDER,
+    payload,
   };
 };
 

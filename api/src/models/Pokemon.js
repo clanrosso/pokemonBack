@@ -20,17 +20,17 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       height: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.INTEGER,
         validate: {
-          min: 0.0,
-          max: 25.0,
+          min: 0,
+          max: 25,
         },
       },
       weight: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.INTEGER,
         validate: {
-          min: 0.0,
-          max: 1500.0,
+          min: 0,
+          max: 1500,
         },
       },
       hp: {

@@ -36,8 +36,8 @@ router.get("/pokemons", async (req, res) => {
         else {
           // Si no lo encuentro respondo esto...
           res
-            .status(404)
-            .send("El nombre ingresado con corresponde a ningun Pokemon");
+            .status(200)
+            .send("El nombre ingresado no corresponde a ningun Pokemon");
         }
       }
     } else {
@@ -79,7 +79,8 @@ router.get("/pokemons/:idPokemon", async (req, res) => {
 
 // Recibo por body los datos para crear un nuevo pokemon en la DB
 router.post("/pokemons", async (req, res) => {
-  const { name, height, weight, hp, attack, defense, speed, tipo } = req.body;
+  const { name, image, height, weight, hp, attack, defense, speed, tipo } =
+    req.body;
   // Setéo en true que es un pokemon de DB
   const inDataBase = true;
   // Si no me pasaron name, aviso que es obligatorio
@@ -90,6 +91,7 @@ router.post("/pokemons", async (req, res) => {
     // Creo el nuevo pokemon
     const newPokemon = await Pokemon.create({
       name,
+      image,
       height,
       weight,
       hp,

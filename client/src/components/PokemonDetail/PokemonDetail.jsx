@@ -1,16 +1,16 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getHouse } from "../../redux/actions";
-import CharacterCard from "../CharacterCard/CharacterCard";
+import { /*useDispatch*/ useSelector } from "react-redux";
+//import { getHouse } from "../../redux/actions";
+//import CharacterCard from "../CharacterCard/CharacterCard";
 
 // CUIDADOOOO. SI O SI FUNCTIONAL COMPONENT! SE ROMPEN LOS TEST EN CASO CONTRARIO!!
 // TAMBIEN VAS A TENER QUE USAR HOOKS!
-const HouseDetail = (props) => {
-  const dispatch = useDispatch();
+const PokemonDetail = (props) => {
+  // const dispatch = useDispatch();
   const house = useSelector((state) => state.house);
 
   React.useEffect(() => {
-    dispatch(getHouse(props.match.params.houseId));
+    //  dispatch(getHouse(props.match.params.houseId));
   }, []);
 
   return (
@@ -19,7 +19,7 @@ const HouseDetail = (props) => {
       <p>{`Region: ${house.region}`}</p>
       <p>{`Words: ${house.words}`}</p>
 
-      {house.characters &&
+      {/*house.characters &&
         house.characters.map((item) => (
           <CharacterCard
             key={item.id}
@@ -29,9 +29,9 @@ const HouseDetail = (props) => {
             imageUrl={item.imageUrl}
             family={item.family}
           />
-        ))}
+        ))*/}
     </div>
   );
 };
 
-export default HouseDetail;
+export default PokemonDetail;

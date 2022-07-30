@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { Link } from "react-router-dom";
 import {
   getAllPokemons,
@@ -9,8 +8,10 @@ import {
   getAllTypes,
   order,
 } from "../../redux/actions/index";
+//import defaultImage from "../../../public/";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import Paginado from "../Paginado/Paginado";
+import SearchBar from "../SearchBar/SearchBar";
 
 //  CLASS COMPONENT!
 
@@ -28,6 +29,9 @@ const Home = () => {
 
   const pokemonsFinal = pokemonsToRender.slice(firstPokemon, lastPokemon);
 
+  const defectImage =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2VE8f6QaijYjZKD9uJBwKk8kbgc3xE_t2-g&usqp=CAU";
+
   React.useEffect(() => {
     dispatch(getAllPokemons());
     dispatch(getAllTypes());
@@ -40,6 +44,7 @@ const Home = () => {
   const chargeAgain = (event) => {
     event.preventDefault();
     dispatch(getAllPokemons());
+    dispatch(getAllTypes());
   };
 
   const filterApiOrDb = (event) => {
@@ -69,6 +74,7 @@ const Home = () => {
       <button onClick={(e) => chargeAgain(e)}>
         Volver a cargar todos los pokemon
       </button>
+      <SearchBar />
       <div>
         <select onChange={(e) => filterApiOrDb(e)}>
           <option value="all">Todos los Pokemons</option>
@@ -102,6 +108,7 @@ const Home = () => {
         pokemonsPerPage={pokemonsPerPage}
         changePage={changePage}
       />
+      {pokemonsToRender.length ? true : <h1>Cargando Pokemons</h1>}
 
       {pokemonsFinal &&
         pokemonsFinal.map((p) => {
@@ -111,7 +118,13 @@ const Home = () => {
                 <PokemonCard
                   key={p.ID}
                   name={p.name}
-                  image={p.image}
+                  image={
+                    p.image ? (
+                      p.image
+                    ) : (
+                      <img src={defectImage} alt="Imagen no encontrada" />
+                    )
+                  }
                   type={p.type}
                   tipos={p.tipos}
                   inDataBase={p.inDataBase}

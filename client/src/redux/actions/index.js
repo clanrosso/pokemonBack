@@ -5,6 +5,8 @@ export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const FILTER_CREATED = "FILTER_CREATED";
 export const GET_ALL_TYPES = "GET_ALL_TYPES";
 export const ORDER = "ORDER";
+export const GET_POKEMON_BY_NAME = "GET_POKEMON_BY_NAME";
+export const CREATE_POKEMON = "CREATE_POKEMON";
 
 // el middleware "thunk", nos permite trabajar con acciones asincrónicas.
 // Necesitamos hacer uso de este middleware ya que peticiones al back siempre son asincrónicas,
@@ -13,9 +15,30 @@ export const ORDER = "ORDER";
 // Usa ruta para buscar todos los pokemons en nuestro back.
 export const getAllPokemons = () => {
   return function (dispatch) {
-    axios("http://localhost:3001/pokemons", {}).then((response) => {
-      return dispatch({ type: GET_ALL_P0KEMONS, payload: response.data });
-    });
+    try {
+      axios("http://localhost:3001/pokemons", {}).then((response) => {
+        return dispatch({ type: GET_ALL_P0KEMONS, payload: response.data });
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const getPokemonByName = (name) => {
+  return function (dispatch) {
+    try {
+      axios("http://localhost:3001/pokemons?name=" + name, {}).then(
+        (response) => {
+          return dispatch({
+            type: GET_POKEMON_BY_NAME,
+            payload: response.data,
+          });
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 };
 
@@ -38,9 +61,13 @@ export const filterCreated = (payload) => {
 // Usa ruta para buscar todos los pokemons en nuestro back.
 export const getAllTypes = () => {
   return function (dispatch) {
-    axios("http://localhost:3001/types", {}).then((response) => {
-      return dispatch({ type: GET_ALL_TYPES, payload: response.data });
-    });
+    try {
+      axios("http://localhost:3001/types", {}).then((response) => {
+        return dispatch({ type: GET_ALL_TYPES, payload: response.data });
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 };
 
@@ -52,6 +79,20 @@ export const order = (payload) => {
   };
 };
 
+export const createPokemon = (payload) => {
+  return function (dispatch) {
+    try {
+      axios.post("http://localhost:3001/pokemons", payload).then((response) => {
+        return dispatch({
+          type: CREATE_POKEMON,
+          payload: response.data,
+        });
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 // Usar ruta para buscar un pokemon por el id pasado
 // Donde :id, el id recibido como argumento de la action creator.
 

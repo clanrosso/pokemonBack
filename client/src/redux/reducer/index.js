@@ -5,6 +5,8 @@ import {
   FILTER_CREATED,
   GET_ALL_TYPES,
   ORDER,
+  GET_POKEMON_BY_NAME,
+  CREATE_POKEMON,
 } from "../actions/index";
 
 const initialState = {
@@ -22,6 +24,20 @@ const rootReducer = (state = initialState, action) => {
         allPokemons: action.payload,
         pokemonsToRender: action.payload,
       };
+
+    case GET_POKEMON_BY_NAME:
+      const pokemonToRender = [];
+      if (
+        action.payload === "El nombre ingresado no corresponde a ningun Pokemon"
+      ) {
+        return alert("El nombre ingresado no corresponde a ningun Pokemon");
+      } else {
+        pokemonToRender.push(action.payload);
+        return {
+          ...state,
+          pokemonsToRender: pokemonToRender,
+        };
+      }
 
     case FILTER_CREATED:
       let pokemonsToRender = [];
@@ -98,6 +114,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allTypes: action.payload,
       };
+
+    case CREATE_POKEMON:
+      console.log(action.payload);
+      return;
 
     default:
       return state;

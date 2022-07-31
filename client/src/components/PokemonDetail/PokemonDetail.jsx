@@ -1,35 +1,66 @@
 import React from "react";
-import { /*useDispatch*/ useSelector } from "react-redux";
-//import { getHouse } from "../../redux/actions";
-//import CharacterCard from "../CharacterCard/CharacterCard";
+import { useDispatch, useSelector } from "react-redux";
+import { getPokemonById } from "../../redux/actions";
+import { Link } from "react-router-dom";
 
-// CUIDADOOOO. SI O SI FUNCTIONAL COMPONENT! SE ROMPEN LOS TEST EN CASO CONTRARIO!!
-// TAMBIEN VAS A TENER QUE USAR HOOKS!
+//  FUNCTIONAL COMPONENT!
+
 const PokemonDetail = (props) => {
-  // const dispatch = useDispatch();
-  const house = useSelector((state) => state.house);
+  const dispatch = useDispatch();
+  console.log(props.match.params.id);
 
   React.useEffect(() => {
-    //  dispatch(getHouse(props.match.params.houseId));
-  }, []);
+    dispatch(getPokemonById(props.match.params.id));
+  }, [dispatch]);
+
+  const pokemonDetail = useSelector((state) => state.pokemonDetail);
+
+  var typeStandard = [];
+  if (pokemonDetail.tipos) {
+    pokemonDetail.tipos.forEach((t) => {
+      typeStandard.push(t.name);
+    });
+  }
+  if (pokemonDetail.type) typeStandard = pokemonDetail.type;
 
   return (
     <div>
-      <h3>{house.name}</h3>
-      <p>{`Region: ${house.region}`}</p>
-      <p>{`Words: ${house.words}`}</p>
+      {pokemonDetail.name ? (
+        <h1>{`Nombre: ${
+          pokemonDetail.name[0].toUpperCase() + pokemonDetail.name.slice(1)
+        }`}</h1>
+      ) : (
+        <h2>Buscando Pokemon seleccionado </h2>
+      )}
 
-      {/*house.characters &&
-        house.characters.map((item) => (
-          <CharacterCard
-            key={item.id}
-            id={item.id}
-            fullName={item.fullName}
-            title={item.title}
-            imageUrl={item.imageUrl}
-            family={item.family}
-          />
-        ))*/}
+      {pokemonDetail.image ? (
+        <img
+          src={pokemonDetail.image}
+          alt="Imagen no encontrada"
+          width="300px"
+          height="350px"
+        />
+      ) : (
+        <h4>Cargando imagen del pokemon...</h4>
+      )}
+
+      {pokemonDetail.hp ? (
+        <>
+          <h4>{`Tipo: ${typeStandard}`}</h4>
+          <h4>{`Altura: ${pokemonDetail.height}`}</h4>
+          <h4>{`Peso: ${pokemonDetail.weight}`}</h4>
+          <h4>{`Vida: ${pokemonDetail.hp}`}</h4>
+          <h4>{`Ataque: ${pokemonDetail.attack}`}</h4>
+          <h4>{`Defensa: ${pokemonDetail.defense}`}</h4>
+          <h4>{`Velocidad: ${pokemonDetail.speed}`}</h4>
+        </>
+      ) : (
+        <h4>Cargando datos del pokemon...</h4>
+      )}
+
+      <Link to={"/home"}>
+        <button>Volver</button>
+      </Link>
     </div>
   );
 };

@@ -76,27 +76,27 @@ const Home = () => {
       </button>
       <SearchBar />
       <div>
-        <select onChange={(e) => filterApiOrDb(e)}>
+        <select key="filterApiOrDb" onChange={(e) => filterApiOrDb(e)}>
           <option value="all">Todos los Pokemons</option>
           <option value="db">Pokemons creados</option>
           <option value="api">Pokemons existentes</option>
         </select>
-        <select onChange={(e) => filterType(e)}>
+        <select key="filterType" onChange={(e) => filterType(e)}>
           <option value="all">Todos los Pokemons</option>
           {allTypes &&
             allTypes.map((t) => {
               return <option value={t.name}>{t.name}</option>;
             })}
         </select>
-        <select onChange={(e) => handleOrder(e)}>
-          <option disabled selected>
+        <select key="order_alfabet" onChange={(e) => handleOrder(e)}>
+          <option disabled defaultValue>
             Orden por alfabeto
           </option>
           <option value="asc_alfabet">De la A a la Z</option>
           <option value="desc_alfabet">De la Z a la A</option>
         </select>
-        <select onChange={(e) => handleOrder(e)}>
-          <option disabled selected>
+        <select key="order_attack" onChange={(e) => handleOrder(e)}>
+          <option disabled defaultValue>
             Orden ataque
           </option>
           <option value="desc_attack">Los mas fuertes</option>
@@ -108,32 +108,38 @@ const Home = () => {
         pokemonsPerPage={pokemonsPerPage}
         changePage={changePage}
       />
-      {pokemonsToRender.length ? true : <h1>Cargando Pokemons</h1>}
 
-      {pokemonsFinal &&
+      {pokemonsFinal ? (
         pokemonsFinal.map((p) => {
           return (
             <>
-              <Link to={"/home/" + p.ID}>
-                <PokemonCard
-                  key={p.ID}
-                  name={p.name}
-                  image={
-                    p.image ? (
-                      p.image
-                    ) : (
-                      <img src={defectImage} alt="Imagen no encontrada" />
-                    )
-                  }
-                  type={p.type}
-                  tipos={p.tipos}
-                  inDataBase={p.inDataBase}
-                  attack={p.attack}
-                />
-              </Link>
+              <PokemonCard
+                key={p.ID}
+                ID={p.ID}
+                name={p.name}
+                image={
+                  p.image ? (
+                    p.image
+                  ) : (
+                    <img src={defectImage} alt="Imagen no encontrada" />
+                  )
+                }
+                type={p.type}
+                tipos={p.tipos}
+                inDataBase={p.inDataBase}
+                attack={p.attack}
+              />
             </>
           );
-        })}
+        })
+      ) : (
+        <h1>Cargando Pokemons...</h1>
+      )}
+      <Paginado
+        allPokemons={pokemonsToRender.length}
+        pokemonsPerPage={pokemonsPerPage}
+        changePage={changePage}
+      />
     </div>
   );
 };

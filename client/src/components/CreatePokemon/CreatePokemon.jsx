@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+
 import { createPokemon, getAllTypes } from "../../redux/actions";
 
 //  FUNCTIONAL COMPONENT!
@@ -17,6 +18,7 @@ const CreatePokemon = () => {
     speed: "",
     tipo: [],
   });
+  const [errors, setError] = React.useState({});
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -26,45 +28,55 @@ const CreatePokemon = () => {
     dispatch(getAllTypes());
   }, [dispatch]);
 
+  const validation = (name, value) => {
+    let errors = {
+      name: "",
+      image: "",
+      height: "",
+      weight: "",
+      hp: "",
+      attack: "",
+      defense: "",
+      speed: "",
+    };
+    if (
+      (name === "name" || name === "image") &&
+      Number.isInteger(Number(value))
+    ) {
+      errors[name] = "Debes ingresar un texto";
+    }
+    if (
+      (name === "height" ||
+        name === "weight" ||
+        name === "hp" ||
+        name === "attack" ||
+        name === "defense" ||
+        name === "speed") &&
+      !Number.isInteger(Number(value))
+    ) {
+      errors[name] = "Debes ingresar un numero";
+    }
+    if (
+      (name === "hp" ||
+        name === "attack" ||
+        name === "defense" ||
+        name === "speed") &&
+      (value < 0 || value > 300)
+    ) {
+      errors[name] = "Debes ingresar un valor entre 0 y 300";
+    }
+    if (name === "height" && (value < 0 || value > 25)) {
+      errors[name] = "Debes ingresar una altura entre 0 y 25";
+    }
+    if (name === "weight" && (value < 0 || value > 1500)) {
+      errors[name] = "Debes ingresar un peso entre 0 y 1500";
+    }
+    return errors;
+  };
   const handleChange = (e) => {
-    if (
-      (e.target.name === "name" || e.target.name === "image") &&
-      Number.isInteger(Number(e.target.value))
-    ) {
-      return alert("Debes ingresar un texto");
-    }
-    if (
-      (e.target.name === "height" ||
-        e.target.name === "weight" ||
-        e.target.name === "hp" ||
-        e.target.name === "attack" ||
-        e.target.name === "defense" ||
-        e.target.name === "speed") &&
-      !Number.isInteger(Number(e.target.value))
-    ) {
-      return alert("Debes ingresar un numero");
-    }
-    if (
-      (e.target.name === "hp" ||
-        e.target.name === "attack" ||
-        e.target.name === "defense" ||
-        e.target.name === "speed") &&
-      (e.target.value < 0 || e.target.value > 300)
-    ) {
-      return alert("Debes ingresar un numero entre 0 y 300");
-    }
-    if (
-      e.target.name === "height" &&
-      (e.target.value < 0 || e.target.value > 25)
-    ) {
-      return alert("Debes ingresar una altura entre 0 y 25");
-    }
-    if (
-      e.target.name === "weight" &&
-      (e.target.value < 0 || e.target.value > 1500)
-    ) {
-      return alert("Debes ingresar un peso entre 0 y 1500");
-    }
+    const name = e.target.name;
+    const value = e.target.value;
+    setError(validation(name, value));
     setPayload({
       ...payload,
       [e.target.name]: e.target.value,
@@ -78,8 +90,17 @@ const CreatePokemon = () => {
     });
   };
 
+  const deleteTipe = (arg) => {
+    setPayload({
+      ...payload,
+      tipo: payload.tipo.filter((t) => t !== arg),
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!payload.name)
+      return alert("Debes enviar un nombre para el nuevo Pokemon");
     dispatch(createPokemon(payload));
     setPayload({
       name: "",
@@ -110,6 +131,7 @@ const CreatePokemon = () => {
           value={payload.name}
           onChange={(e) => handleChange(e)}
         />
+        {errors.name && <p>{errors.name}</p>}
 
         <label>Imagen: </label>
         <input
@@ -118,6 +140,7 @@ const CreatePokemon = () => {
           value={payload.image}
           onChange={(e) => handleChange(e)}
         />
+        {errors.image && <p>{errors.image}</p>}
 
         <label>Altura: </label>
         <input
@@ -126,6 +149,7 @@ const CreatePokemon = () => {
           value={payload.height}
           onChange={(e) => handleChange(e)}
         />
+        {errors.height && <p>{errors.height}</p>}
 
         <label>Peso: </label>
         <input
@@ -134,6 +158,7 @@ const CreatePokemon = () => {
           value={payload.weight}
           onChange={(e) => handleChange(e)}
         />
+        {errors.weight && <p>{errors.weight}</p>}
 
         <label>Vida: </label>
         <input
@@ -142,6 +167,7 @@ const CreatePokemon = () => {
           value={payload.hp}
           onChange={(e) => handleChange(e)}
         />
+        {errors.hp && <p>{errors.hp}</p>}
 
         <label>Ataque: </label>
         <input
@@ -150,6 +176,7 @@ const CreatePokemon = () => {
           value={payload.attack}
           onChange={(e) => handleChange(e)}
         />
+        {errors.attack && <p>{errors.attack}</p>}
 
         <label>Defensa: </label>
         <input
@@ -158,6 +185,7 @@ const CreatePokemon = () => {
           value={payload.defense}
           onChange={(e) => handleChange(e)}
         />
+        {errors.defense && <p>{errors.defense}</p>}
 
         <label>Velocidad: </label>
         <input
@@ -166,20 +194,28 @@ const CreatePokemon = () => {
           value={payload.speed}
           onChange={(e) => handleChange(e)}
         />
+        {errors.speed && <p>{errors.speed}</p>}
+
         <select onChange={(e) => selectChange(e)}>
-          <option value="all">Todos los Pokemons</option>
+          <option value="all">Selecciona un tipo</option>
           {allTypes &&
             allTypes.map((t) => {
               return <option value={t.name}>{t.name}</option>;
             })}
         </select>
-        <ul>
-          {payload.tipo.map((t) => {
-            return <li>{t}</li>;
-          })}
-        </ul>
+
         <button type="submit">Crear Pokemon</button>
       </form>
+      <div>
+        {payload.tipo.map((t) => {
+          return (
+            <div>
+              <p>{t}</p>
+              <button onClick={() => deleteTipe(t)}>X</button>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

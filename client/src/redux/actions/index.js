@@ -7,6 +7,7 @@ export const GET_ALL_TYPES = "GET_ALL_TYPES";
 export const ORDER = "ORDER";
 export const GET_POKEMON_BY_NAME = "GET_POKEMON_BY_NAME";
 export const CREATE_POKEMON = "CREATE_POKEMON";
+export const GET_POKEMON_BY_ID = "GET_POKEMON_BY_ID";
 
 // el middleware "thunk", nos permite trabajar con acciones asincrónicas.
 // Necesitamos hacer uso de este middleware ya que peticiones al back siempre son asincrónicas,
@@ -25,6 +26,7 @@ export const getAllPokemons = () => {
   };
 };
 
+// Usa ruta para buscar un pokemon por name pasado por query.
 export const getPokemonByName = (name) => {
   return function (dispatch) {
     try {
@@ -36,6 +38,23 @@ export const getPokemonByName = (name) => {
           });
         }
       );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+// Usa ruta para buscar un pokemon por id pasado por params.
+export const getPokemonById = (id) => {
+  return function (dispatch) {
+    try {
+      console.log(id);
+      axios("http://localhost:3001/pokemons/" + id, {}).then((response) => {
+        return dispatch({
+          type: GET_POKEMON_BY_ID,
+          payload: response.data,
+        });
+      });
     } catch (err) {
       console.log(err);
     }

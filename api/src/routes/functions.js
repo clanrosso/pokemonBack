@@ -103,4 +103,53 @@ module.exports = {
     });
     return selectedPokemonDB;
   },
+
+  // Esta función va a validar datos en la ruta de post/pokemons
+  validation: (name, image, height, weight, hp, attack, defense, speed) => {
+    // Creo un mensaje de error vacío
+    let error = "";
+    // Debe recibir un name - Dato obligatório
+    if (!name) {
+      error = "Debes enviar un nombre para el nuevo Pokemon";
+    }
+    // Name e image deben ser strings
+    if (Number.isInteger(Number(name)) || Number.isInteger(Number(image))) {
+      error = "Debes ingresar un texto";
+    }
+    // Las demas propiedades deben ser numeros enteros
+    if (
+      !Number.isInteger(Number(height)) ||
+      !Number.isInteger(Number(weight)) ||
+      !Number.isInteger(Number(hp)) ||
+      !Number.isInteger(Number(attack)) ||
+      !Number.isInteger(Number(defense)) ||
+      !Number.isInteger(Number(speed))
+    ) {
+      error = "Debes ingresar un numero";
+    }
+    // Vida, ataque, defensa y velocidad deben tener un numero entre 0 y 300
+    if (
+      hp < 0 ||
+      hp > 300 ||
+      attack < 0 ||
+      attack > 300 ||
+      defense < 0 ||
+      defense > 300 ||
+      speed < 0 ||
+      speed > 300
+    ) {
+      error =
+        "Vida, ataque, defensa y velocidad deben tener un numero entre 0 y 300";
+    }
+    // Altura debe tener un numero entre 0 y 25
+    if (height < 0 || height > 25) {
+      error = "Debes ingresar una altura entre 0 y 25";
+    }
+    // Peso debe tener un numero entre 0 y 1500
+    if (weight < 0 || weight > 1500) {
+      error = "Debes ingresar un peso entre 0 y 1500";
+    }
+    //Si hay algun mensaje de error lo retorno
+    if (error) return error;
+  },
 };

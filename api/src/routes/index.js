@@ -8,6 +8,7 @@ const {
   PokemonFromDB,
   oneFromApi,
   oneFromDB,
+  validation,
 } = require("./functions");
 
 // Ejecuto Router
@@ -81,12 +82,21 @@ router.get("/pokemons/:idPokemon", async (req, res) => {
 router.post("/pokemons", async (req, res) => {
   const { name, image, height, weight, hp, attack, defense, speed, tipo } =
     req.body;
-  // Setéo en true que es un pokemon de DB
-  const inDataBase = true;
-  // Si no me pasaron name, aviso que es obligatorio
-  if (!name) {
-    return res.status(404).send("Falta enviar un nombre para el nuevo Pokemon");
-  }
+
+  // Hago todas la validaciones con la funcion importada
+  /*const error = validation(
+    name,
+    image,
+    height,
+    weight,
+    hp,
+    attack,
+    defense,
+    speed
+  );
+  // Si obtengo algun mensaje de error de validacion lo envío
+  if (error) res.status(404).send(error);*/
+
   try {
     // Creo el nuevo pokemon
     const newPokemon = await Pokemon.create({
@@ -98,7 +108,6 @@ router.post("/pokemons", async (req, res) => {
       attack,
       defense,
       speed,
-      inDataBase,
     });
 
     // Busco en la DB los tipos de pokemon que coincidan
@@ -112,7 +121,7 @@ router.post("/pokemons", async (req, res) => {
     // Le agrego al nuevo pokemon los tipos (quedan vinculados en la tabla intermedia)
     newPokemon.addTipo(tipoDB);
     res.status(201).json("Pokemon creado con exito");
-  } catch (error) {
+  } catch (err) {
     console.log(err);
     res.status(404).send("Error en alguno de los datos provistos");
   }

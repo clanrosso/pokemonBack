@@ -28,59 +28,54 @@ const CreatePokemon = () => {
     dispatch(getAllTypes());
   }, [dispatch]);
 
-  const validation = (name, value) => {
-    let errors = {
-      name: "",
-      image: "",
-      height: "",
-      weight: "",
-      hp: "",
-      attack: "",
-      defense: "",
-      speed: "",
-    };
-    if (
-      (name === "name" || name === "image") &&
-      Number.isInteger(Number(value))
-    ) {
-      errors[name] = "Debes ingresar un texto";
-    }
-    if (
-      (name === "height" ||
-        name === "weight" ||
-        name === "hp" ||
-        name === "attack" ||
-        name === "defense" ||
-        name === "speed") &&
-      !Number.isInteger(Number(value))
-    ) {
-      errors[name] = "Debes ingresar un numero";
-    }
-    if (
-      (name === "hp" ||
-        name === "attack" ||
-        name === "defense" ||
-        name === "speed") &&
-      (value < 0 || value > 300)
-    ) {
-      errors[name] = "Debes ingresar un valor entre 0 y 300";
-    }
-    if (name === "height" && (value < 0 || value > 25)) {
-      errors[name] = "Debes ingresar una altura entre 0 y 25";
-    }
-    if (name === "weight" && (value < 0 || value > 1500)) {
-      errors[name] = "Debes ingresar un peso entre 0 y 1500";
-    }
+  const validation = (payload) => {
+    let errors = {};
+    if (Number.isInteger(Number(payload.name)))
+      errors.name = "Debes ingresar un texto";
+    if (Number.isInteger(Number(payload.image)))
+      errors.image = "Debes ingresar un texto";
+
+    if (!Number.isInteger(Number(payload.height)))
+      errors.height = "Debes ingresar un numero";
+    if (!Number.isInteger(Number(payload.weight)))
+      errors.weight = "Debes ingresar un numero";
+    if (!Number.isInteger(Number(payload.hp)))
+      errors.hp = "Debes ingresar un numero";
+    if (!Number.isInteger(Number(payload.attack)))
+      errors.attack = "Debes ingresar un numero";
+    if (!Number.isInteger(Number(payload.defense)))
+      errors.defense = "Debes ingresar un numero";
+    if (!Number.isInteger(Number(payload.speed)))
+      errors.speed = "Debes ingresar un numero";
+
+    if (payload.hp < 0 || payload.hp > 300)
+      errors.hp = "Debes ingresar un valor entre 0 y 300";
+    if (payload.attack < 0 || payload.attack > 300)
+      errors.attack = "Debes ingresar un valor entre 0 y 300";
+    if (payload.defense < 0 || payload.defense > 300)
+      errors.defense = "Debes ingresar un valor entre 0 y 300";
+    if (payload.speed < 0 || payload.speed > 300)
+      errors.speed = "Debes ingresar un valor entre 0 y 300";
+
+    if (payload.height < 0 || payload.height > 25)
+      errors.height = "Debes ingresar un valor entre 0 y 25";
+    if (payload.weight < 0 || payload.weight > 1500)
+      errors.weight = "Debes ingresar un valor entre 0 y 1500";
+
     return errors;
   };
+
   const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setError(validation(name, value));
     setPayload({
       ...payload,
       [e.target.name]: e.target.value,
     });
+    setError(
+      validation({
+        ...payload,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
   const selectChange = (e) => {

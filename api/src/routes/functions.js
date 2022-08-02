@@ -69,10 +69,11 @@ module.exports = {
       if (selectedPokemonApi) {
         // Hago un array con las estaditicas
         const statsArray = selectedPokemonApi.data.stats;
+        const images = selectedPokemonApi.data.sprites;
         const selectedPokemon = {
           // solo dejo los datos que necesito
           name: selectedPokemonApi.data.forms[0].name,
-          image: selectedPokemonApi.data.sprites.other.home.front_default,
+          image: images.other.home.front_default,
           type: selectedPokemonApi.data.types.map((t) => t.type.name),
           ID: selectedPokemonApi.data.id,
           height: selectedPokemonApi.data.height,

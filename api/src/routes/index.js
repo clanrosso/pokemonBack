@@ -84,7 +84,7 @@ router.post("/pokemons", async (req, res) => {
     req.body;
 
   // Hago todas la validaciones con la funcion importada
-  /*const error = validation(
+  const error = validation(
     name,
     image,
     height,
@@ -95,35 +95,38 @@ router.post("/pokemons", async (req, res) => {
     speed
   );
   // Si obtengo algun mensaje de error de validacion lo envío
-  if (error) res.status(404).send(error);*/
+  if (error) {
+    res.status(404).send(error);
+    // Sino...
+  } else {
+    try {
+      // Creo el nuevo pokemon
+      const newPokemon = await Pokemon.create({
+        name,
+        image,
+        height,
+        weight,
+        hp,
+        attack,
+        defense,
+        speed,
+      });
 
-  try {
-    // Creo el nuevo pokemon
-    const newPokemon = await Pokemon.create({
-      name,
-      image,
-      height,
-      weight,
-      hp,
-      attack,
-      defense,
-      speed,
-    });
+      // Busco en la DB los tipos de pokemon que coincidan
+      // con los tipos que me pasaron por body (puede ser uno solo, o un array)
+      const tipoDB = await Tipo.findAll({
+        where: {
+          name: tipo,
+        },
+      });
 
-    // Busco en la DB los tipos de pokemon que coincidan
-    // con los tipos que me pasaron por body (puede ser uno solo, o un array)
-    const tipoDB = await Tipo.findAll({
-      where: {
-        name: tipo,
-      },
-    });
-
-    // Le agrego al nuevo pokemon los tipos (quedan vinculados en la tabla intermedia)
-    newPokemon.addTipo(tipoDB);
-    res.status(201).json("Pokemon creado con exito");
-  } catch (err) {
-    console.log(err);
-    res.status(404).send("Error en alguno de los datos provistos");
+      // Le agrego al nuevo pokemon los tipos (quedan vinculados en la tabla intermedia)
+      newPokemon.addTipo(tipoDB);
+      res.status(201).json("Pokemon creado con exito");
+    } catch (err) {
+      console.log(err);
+      res.status(404).send("Error en alguno de los datos provistos");
+    }
   }
 });
 

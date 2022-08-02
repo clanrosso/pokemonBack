@@ -3,17 +3,32 @@ import { Link } from "react-router-dom";
 
 // FUNCTIONAL COMPONENT!
 const PokemonCard = ({ ID, name, type, tipos, image, attack }) => {
-  var typeStandard = [];
+  // Los pokemon de la Api traen un array type ej: [tipo1, tipo2]
+  // Los pokemon de la DB traen un array con tipos ej: [{name:tipo1}, {name:tipo2}]
+  // Hago este array para unificarlos
+  var typeArray = [];
+  // Del array de objetos saco el valor de la propiedad name de cada objeto
   if (tipos) {
     tipos.forEach((t) => {
-      typeStandard.push(t.name);
+      typeArray.push(t.name);
     });
   }
-  if (type) typeStandard = type;
+  // Si trae un array type lo paso derecho
+  if (type) typeArray = type;
+  //Defino un array para renderizar
+  var typeString = " - ";
+  // Recorro el array y agrego cada tipo (pongo la primera letra en mayuscula)
+  for (let i = 0; i < typeArray.length; i++) {
+    typeString =
+      typeString +
+      typeArray[i][0].toUpperCase() +
+      typeArray[i].slice(1) +
+      " - ";
+  }
 
   return (
     <div>
-      <h1>{`Nombre: ${name}`}</h1>
+      <h1>{`Nombre: ${name[0].toUpperCase() + name.slice(1)}`}</h1>
       <img
         src={image}
         alt="Imagen no encontrada"
@@ -21,7 +36,7 @@ const PokemonCard = ({ ID, name, type, tipos, image, attack }) => {
         height="250px"
       />
       <p>{`Ataque: ${attack}`}</p>
-      <h4>{`Tipo: ${typeStandard}`}</h4>
+      <h4>{`Tipo: ${typeString}`}</h4>
       <Link to={"/home/" + ID}>
         <button>Detalle</button>
       </Link>

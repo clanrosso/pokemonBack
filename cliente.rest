@@ -1,0 +1,23 @@
+GET https://localhost:3001/pokemons HTTP/1.1
+
+###
+
+
+
+POST https://localhost:3001/pokemons HTTP/1.1
+content-type: application/json
+
+{
+    "name": "ile",
+    "image": "https://es.123rf.com/photo_137408852_atleta-haciendo-porristas-en-la-ilustraci%C3%B3n-de-fondo-blanco.html?vti=o9x1da9tth7bsa78pq-1-65",
+    "height": 3,
+    "weight": 50,
+    "hp": 100,
+    "attack": 90,
+  "defense": 110,
+   "speed": 40,
+  "tipo": ["poison", "normal"],
+}
+
+
+

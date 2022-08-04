@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemonById } from "../../redux/actions";
 import { Link } from "react-router-dom";
+//import "./PokemonDetail.css"
 
 //  FUNCTIONAL COMPONENT!
 

@@ -9,9 +9,9 @@ export const GET_POKEMON_BY_NAME = "GET_POKEMON_BY_NAME";
 export const CREATE_POKEMON = "CREATE_POKEMON";
 export const GET_POKEMON_BY_ID = "GET_POKEMON_BY_ID";
 
-// el middleware "thunk", nos permite trabajar con acciones asincrónicas.
-// Necesitamos hacer uso de este middleware ya que peticiones al back siempre son asincrónicas,
-// , necesitamos ese "delay" para despachar nuestra action hasta que la data nos llegue.
+// El middleware "thunk", nos permite trabajar con acciones asincrónicas.
+// Necesitamos hacer uso de este middleware ya que las peticiones al back siempre son asincrónicas,
+// , necesitamos ese "delay" para dispatchar nuestra action hasta que la data nos llegue.
 
 // Usa ruta para buscar todos los pokemons en nuestro back.
 export const getAllPokemons = () => {
@@ -77,7 +77,7 @@ export const filterCreated = (payload) => {
   };
 };
 
-// Usa ruta para buscar todos los pokemons en nuestro back.
+// Usa ruta para buscar todos los tipos pokemons en nuestro back.
 export const getAllTypes = () => {
   return function (dispatch) {
     try {
@@ -98,6 +98,7 @@ export const order = (payload) => {
   };
 };
 
+// Usa ruta para crear un nuevo pokemon en nuestra DB.
 export const createPokemon = (payload) => {
   return function (dispatch) {
     try {
@@ -112,41 +113,12 @@ export const createPokemon = (payload) => {
     }
   };
 };
-// Usar ruta para buscar un pokemon por el id pasado
-// Donde :id, el id recibido como argumento de la action creator.
 
 /*
 export const getPokemon = (id) => {
   return async function (dispatch) {
     let response = await fetch(`http://localhost:3000/houses/${id}`);
     return dispatch({ type: GET_HOUSE, payload: response.json() });
-  };
-};
-
-/*
-// Inicializamos id en 3, para que nuestros próximos ID's no se pisen con los existentes.
-// La vas a usar en la funcion createHouse, descomentala cuando te haga falta;
-let id = 3;
-
-// Desde el componente ejecutamos la action creator, pasandole como argumento los values que vamos a utilizar para crear la house.
-export const createHouse = ({ name, region, words }) => {
-  id++;
-  return {
-    type: CREATE_HOUSE,
-    payload: {
-      id: id,
-      name: name,
-      region: region,
-      words: words,
-    },
-  };
-};
-
-// Desde el componente ejecutamos la action creator, pasandole como argumento el id de la house que queremos eliminar.
-export const deleteHouse = (id) => {
-  return {
-    type: DELETE_HOUSE,
-    payload: id,
   };
 };
 */

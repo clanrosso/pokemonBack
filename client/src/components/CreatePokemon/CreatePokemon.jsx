@@ -1,12 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-
+// Importo las acciones que voy a utilizar
 import { createPokemon, getAllTypes } from "../../redux/actions";
 
 //  FUNCTIONAL COMPONENT!
 
 const CreatePokemon = () => {
+  // Creo un estado local con un payload que voy a enviar por body hacia el back
   const [payload, setPayload] = React.useState({
     name: "",
     image: "",
@@ -18,17 +19,23 @@ const CreatePokemon = () => {
     speed: "",
     tipo: [],
   });
+  // Creo un estado local con errores, comienza con un objeto vacío
   const [errors, setError] = React.useState({});
 
   const dispatch = useDispatch();
   const history = useHistory();
+  // Traigo todos los tipos de pokemon desde el estado de redux
   const allTypes = useSelector((state) => state.allTypes);
 
+  // Al montar el componete dispatcho una accion para pedir todos los tipos de pokemon
   React.useEffect(() => {
     dispatch(getAllTypes());
   }, [dispatch]);
 
+  // Con esta función voy a validar la info ingresa por input
   const validation = (payload) => {
+    // Inicio un objeto vacío y si entra en algun caso,
+    //voy creando distintas keys con un mensaje
     let errors = {};
     if (Number.isInteger(Number(payload.name)))
       errors.name = "Debes ingresar un texto";
@@ -65,11 +72,14 @@ const CreatePokemon = () => {
     return errors;
   };
 
+  // Con esta funcion manejo los cambios en los input
   const handleChange = (e) => {
+    // Setéo el payload
     setPayload({
       ...payload,
       [e.target.name]: e.target.value,
     });
+    // Setéo los erroes
     setError(
       validation({
         ...payload,
@@ -78,13 +88,16 @@ const CreatePokemon = () => {
     );
   };
 
+  // Con esta funcion manejo los cambios en el select
   const selectChange = (e) => {
     setPayload({
       ...payload,
+      // Voy concatenando los tipos seleccionados
       tipo: [...payload.tipo, e.target.value],
     });
   };
 
+  // Con esta funcion se puede eliminar tipos ya elegidos en el select
   const deleteTipe = (arg) => {
     setPayload({
       ...payload,
@@ -92,11 +105,15 @@ const CreatePokemon = () => {
     });
   };
 
+  // Con esta funcion dispatcho la accion para crear el nuevo pokemon
   const handleSubmit = (e) => {
     e.preventDefault();
+    // El name es dato obligatorio, si no está retorno una alerta
     if (!payload.name)
       return alert("Debes enviar un nombre para el nuevo Pokemon");
+    // Distpacho la accion
     dispatch(createPokemon(payload));
+    // Limpio el payload
     setPayload({
       name: "",
       image: "",
@@ -108,7 +125,7 @@ const CreatePokemon = () => {
       speed: "",
       tipo: [],
     });
-    alert("Pokemon creado con exito");
+    // Redirijo al Home
     history.push("/home");
   };
 
@@ -126,7 +143,10 @@ const CreatePokemon = () => {
           value={payload.name}
           onChange={(e) => handleChange(e)}
         />
-        {errors.name && <p>{errors.name}</p>}
+        {
+          // Si tengo erroes para este input, los muestro
+          errors.name && <p>{errors.name}</p>
+        }
 
         <label>Imagen: </label>
         <input
@@ -135,7 +155,10 @@ const CreatePokemon = () => {
           value={payload.image}
           onChange={(e) => handleChange(e)}
         />
-        {errors.image && <p>{errors.image}</p>}
+        {
+          // Si tengo erroes para este input, los muestro
+          errors.image && <p>{errors.image}</p>
+        }
 
         <label>Altura: </label>
         <input
@@ -144,7 +167,10 @@ const CreatePokemon = () => {
           value={payload.height}
           onChange={(e) => handleChange(e)}
         />
-        {errors.height && <p>{errors.height}</p>}
+        {
+          // Si tengo erroes para este input, los muestro
+          errors.height && <p>{errors.height}</p>
+        }
 
         <label>Peso: </label>
         <input
@@ -153,7 +179,10 @@ const CreatePokemon = () => {
           value={payload.weight}
           onChange={(e) => handleChange(e)}
         />
-        {errors.weight && <p>{errors.weight}</p>}
+        {
+          // Si tengo erroes para este input, los muestro
+          errors.weight && <p>{errors.weight}</p>
+        }
 
         <label>Vida: </label>
         <input
@@ -162,7 +191,10 @@ const CreatePokemon = () => {
           value={payload.hp}
           onChange={(e) => handleChange(e)}
         />
-        {errors.hp && <p>{errors.hp}</p>}
+        {
+          // Si tengo erroes para este input, los muestro
+          errors.hp && <p>{errors.hp}</p>
+        }
 
         <label>Ataque: </label>
         <input
@@ -171,7 +203,10 @@ const CreatePokemon = () => {
           value={payload.attack}
           onChange={(e) => handleChange(e)}
         />
-        {errors.attack && <p>{errors.attack}</p>}
+        {
+          // Si tengo erroes para este input, los muestro
+          errors.attack && <p>{errors.attack}</p>
+        }
 
         <label>Defensa: </label>
         <input
@@ -180,7 +215,10 @@ const CreatePokemon = () => {
           value={payload.defense}
           onChange={(e) => handleChange(e)}
         />
-        {errors.defense && <p>{errors.defense}</p>}
+        {
+          // Si tengo erroes para este input, los muestro
+          errors.defense && <p>{errors.defense}</p>
+        }
 
         <label>Velocidad: </label>
         <input
@@ -189,27 +227,36 @@ const CreatePokemon = () => {
           value={payload.speed}
           onChange={(e) => handleChange(e)}
         />
-        {errors.speed && <p>{errors.speed}</p>}
+        {
+          // Si tengo erroes para este input, los muestro
+          errors.speed && <p>{errors.speed}</p>
+        }
 
         <select onChange={(e) => selectChange(e)}>
           <option value="all">Selecciona un tipo</option>
-          {allTypes &&
-            allTypes.map((t) => {
-              return <option value={t.name}>{t.name}</option>;
-            })}
+          {
+            // Mapeo el array de tipos y retorno una opcion por cada tipo
+            allTypes &&
+              allTypes.map((t) => {
+                return <option value={t.name}>{t.name}</option>;
+              })
+          }
         </select>
 
         <button type="submit">Crear Pokemon</button>
       </form>
       <div>
-        {payload.tipo.map((t) => {
-          return (
-            <div>
-              <p>{t}</p>
-              <button onClick={() => deleteTipe(t)}>X</button>
-            </div>
-          );
-        })}
+        {
+          // Si tengo tipos seleccionados, los muestro, con su boton para eliminarlo
+          payload.tipo.map((t) => {
+            return (
+              <div>
+                <p>{t}</p>
+                <button onClick={() => deleteTipe(t)}>X</button>
+              </div>
+            );
+          })
+        }
       </div>
     </div>
   );

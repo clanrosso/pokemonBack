@@ -14,6 +14,7 @@ import PokemonCard from "../PokemonCard/PokemonCard";
 import Paginado from "../Paginado/Paginado";
 import SearchBar from "../SearchBar/SearchBar";
 import Filter from "../Filter/Filter";
+import "./Home.css";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -83,54 +84,60 @@ const Home = () => {
     console.log(orderBy);
   };
 
-  return (
-    <div>
-      <h1>Vive el mundo Pokemon</h1>
-      <div>
-        <Link to={`/pokemon`}>
-          <button>Crear un nuevo Pokemon</button>
-        </Link>
-        <button onClick={(e) => chargeAgain(e)}>
-          Volver a cargar todos los pokemon
-        </button>
-      </div>
-      <SearchBar />
-      <Filter
-        filterApiOrDb={filterApiOrDb}
-        filterType={filterType}
-        handleOrder={handleOrder}
-        allTypes={allTypes}
-      />
+  // Creo un contador para poner en className de cada card
+  let contador = 1;
 
-      <div>
+  return (
+    <div className="home">
+      <h1 className="titleHome">The amazing Pokeworld!</h1>
+      <div className="nav">
+        <div className="buttonsHome">
+          <Link to={`/pokemon`}>
+            <button className="buttonCreate">Crear un nuevo Pokemon</button>
+          </Link>
+          <button className="buttonRecharge" onClick={(e) => chargeAgain(e)}>
+            Volver a cargar todos los pokemon
+          </button>
+        </div>
+        <SearchBar />
+      </div>
+
+      <div className="principal">
+        <Filter
+          filterApiOrDb={filterApiOrDb}
+          filterType={filterType}
+          handleOrder={handleOrder}
+          allTypes={allTypes}
+        />
         <Paginado
           allPokemons={pokemonsToRender.length}
           pokemonsPerPage={pokemonsPerPage}
           changePage={changePage}
           currentPage={currentPage}
         />
-
-        {pokemonsToRender.length === 0 ? <h1>Cargando Pokemons...</h1> : null}
-        {pokemonsFinal ? (
-          pokemonsFinal.map((p) => {
-            return (
-              <>
-                <PokemonCard
-                  key={p.ID}
-                  ID={p.ID}
-                  name={p.name}
-                  image={p.image ? p.image : defectImage}
-                  type={p.type}
-                  tipos={p.tipos}
-                  inDataBase={p.inDataBase}
-                  attack={p.attack}
-                />
-              </>
-            );
-          })
-        ) : (
-          <h1>Cargando Pokemons...</h1>
-        )}
+        <div className="cards">
+          {pokemonsToRender.length === 0 ? <h1>Cargando Pokemons...</h1> : null}
+          {pokemonsFinal ? (
+            pokemonsFinal.map((p) => {
+              return (
+                <div className={"card" + contador++} key={p.name}>
+                  <PokemonCard
+                    key={p.ID}
+                    ID={p.ID}
+                    name={p.name}
+                    image={p.image ? p.image : defectImage}
+                    type={p.type}
+                    tipos={p.tipos}
+                    inDataBase={p.inDataBase}
+                    attack={p.attack}
+                  />
+                </div>
+              );
+            })
+          ) : (
+            <h1 className="cargandoHome">Cargando Pokemons...</h1>
+          )}
+        </div>
         <Paginado
           allPokemons={pokemonsToRender.length}
           pokemonsPerPage={pokemonsPerPage}

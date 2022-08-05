@@ -250,7 +250,7 @@ const CreatePokemon = () => {
           // Si tengo tipos seleccionados, los muestro, con su boton para eliminarlo
           payload.tipo.map((t) => {
             return (
-              <div>
+              <div key={t.name}>
                 <p>{t}</p>
                 <button onClick={() => deleteTipe(t)}>X</button>
               </div>

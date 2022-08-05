@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemonById } from "../../redux/actions";
 import { Link } from "react-router-dom";
-//import "./PokemonDetail.css"
+import "./PokemonDetail.css";
 
 //  FUNCTIONAL COMPONENT!
 
@@ -44,43 +44,47 @@ const PokemonDetail = (props) => {
   }
 
   return (
-    <div>
-      {pokemonDetail.name ? (
-        <h1>{`Nombre: ${
-          pokemonDetail.name[0].toUpperCase() + pokemonDetail.name.slice(1)
-        }`}</h1>
-      ) : (
-        <h2>Buscando Pokemon seleccionado </h2>
-      )}
+    <div className="detail">
+      <div className="left">
+        {pokemonDetail.name ? (
+          <h1 className="name">{`Nombre: ${
+            pokemonDetail.name[0].toUpperCase() + pokemonDetail.name.slice(1)
+          }`}</h1>
+        ) : (
+          <h2>Buscando Pokemon seleccionado </h2>
+        )}
 
-      {pokemonDetail.image ? (
-        <img
-          src={pokemonDetail.image}
-          alt="Imagen no encontrada"
-          width="300px"
-          height="350px"
-        />
-      ) : (
-        <h4>Cargando imagen del pokemon...</h4>
-      )}
+        {pokemonDetail.image ? (
+          <img
+            className="imageDetail"
+            src={pokemonDetail.image}
+            alt="Imagen no encontrada"
+            width="300px"
+            height="350px"
+          />
+        ) : (
+          <h4>Cargando imagen del pokemon...</h4>
+        )}
+        <Link to={"/home"}>
+          <button className="button">Volver</button>
+        </Link>
+      </div>
 
-      {pokemonDetail.hp ? (
-        <>
-          <h4>{`Tipo: ${typeString}`}</h4>
-          <h4>{`Altura: ${pokemonDetail.height}`}</h4>
-          <h4>{`Peso: ${pokemonDetail.weight}`}</h4>
-          <h4>{`Vida: ${pokemonDetail.hp}`}</h4>
-          <h4>{`Ataque: ${pokemonDetail.attack}`}</h4>
-          <h4>{`Defensa: ${pokemonDetail.defense}`}</h4>
-          <h4>{`Velocidad: ${pokemonDetail.speed}`}</h4>
-        </>
-      ) : (
-        <h4>Cargando datos del pokemon...</h4>
-      )}
-
-      <Link to={"/home"}>
-        <button>Volver</button>
-      </Link>
+      <div className="right">
+        {pokemonDetail.hp ? (
+          <>
+            <h4>{`Tipo: ${typeString}`}</h4>
+            <h4>{`Altura: ${pokemonDetail.height}`}</h4>
+            <h4>{`Peso: ${pokemonDetail.weight}`}</h4>
+            <h4>{`Vida: ${pokemonDetail.hp}`}</h4>
+            <h4>{`Ataque: ${pokemonDetail.attack}`}</h4>
+            <h4>{`Defensa: ${pokemonDetail.defense}`}</h4>
+            <h4>{`Velocidad: ${pokemonDetail.speed}`}</h4>
+          </>
+        ) : (
+          <h4>Cargando datos del pokemon...</h4>
+        )}
+      </div>
     </div>
   );
 };

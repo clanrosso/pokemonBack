@@ -1,4 +1,5 @@
 import React from "react";
+import "./Paginado.css";
 
 //  CLASS COMPONENT!
 
@@ -19,11 +20,12 @@ export default function Paginado({
   }
 
   return (
-    <div>
+    <div className="paginado">
       {
         // Creo un boton prev
         pageNumbersArray && (
           <button
+            className="buttonPaginado"
             key="prev"
             onClick={() => {
               changePage(currentPage > 1 ? currentPage - 1 : null);
@@ -38,6 +40,7 @@ export default function Paginado({
         pageNumbersArray &&
           pageNumbersArray.map((page) => (
             <button
+              className="buttonPaginado"
               key={page}
               onClick={() => {
                 changePage(page);
@@ -51,6 +54,7 @@ export default function Paginado({
         // Creo un boton next
         pageNumbersArray && (
           <button
+            className="buttonPaginado"
             key="next"
             onClick={() => {
               changePage(currentPage < pageNumbers ? currentPage + 1 : null);

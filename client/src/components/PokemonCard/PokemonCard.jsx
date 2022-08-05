@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./PokemonCard.css";
 
 // FUNCTIONAL COMPONENT!
 const PokemonCard = ({ ID, name, type, tipos, image, attack }) => {
@@ -27,18 +28,23 @@ const PokemonCard = ({ ID, name, type, tipos, image, attack }) => {
   }
 
   return (
-    <div>
-      <h1>{`Nombre: ${name[0].toUpperCase() + name.slice(1)}`}</h1>
+    <div className="card">
+      <h1 className="title">{`Nombre: ${
+        name[0].toUpperCase() + name.slice(1)
+      }`}</h1>
       <img
+        className="image"
         src={image}
         alt="Imagen no encontrada"
         width="200px"
         height="250px"
       />
-      <p>{`Ataque: ${attack}`}</p>
-      <h4>{`Tipo: ${typeString}`}</h4>
+      <div className="dates">
+        <h4>{`Ataque: ${attack}`}</h4>
+        <h4>{`Tipo: ${typeString}`}</h4>
+      </div>
       <Link to={"/home/" + ID}>
-        <button>Detalle</button>
+        <button className="buttonCard">Detalle</button>
       </Link>
     </div>
   );

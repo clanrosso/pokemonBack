@@ -1,15 +1,23 @@
-.cnt {
-    padding-top: 10px;
-}
-.form-container {
-    display:flex;
-    flex-direction: row;
-    align-items: flex-start;
+.filter {
+  margin: 5px;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.form-container button {
-    margin-left: 20px;
-}
-.label {
-    padding-right: 10px;
+.select {
+  background-color: #bcd39c;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 4px;
+  font-family: "georgia";
+  font-weight: bold;
+  color: #676046 !important;
+  font-size: 15px;
+  text-shadow: 0px 0px 0px #7cacde;
+
+  padding: 3px 12px;
+  border-radius: 8px;
+  border: 1px solid #676046;
 }

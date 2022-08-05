@@ -1,15 +1,152 @@
-.cnt {
-    padding-top: 10px;
-}
-.form-container {
-    display:flex;
-    flex-direction: row;
-    align-items: flex-start;
+.home {
+  background-color: #bcd39c;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
 }
 
-.form-container button {
-    margin-left: 20px;
+.titleHome {
+  font-family: cursive;
+  font-size: 1cm;
+  font-style: italic;
+  font-weight: 800;
+  font-variant: small-caps;
+  font-stretch: expanded;
+  color: #fffc99 !important;
+  text-shadow: 2px 4px 5px rgba(20, 19, 19, 0.63);
+  margin: 0px;
 }
-.label {
-    padding-right: 10px;
+
+.cargandoHome {
+  font-family: cursive;
+  font-size: 1cm;
+  font-style: italic;
+  font-weight: 600;
+  font-variant: small-caps;
+  font-stretch: expanded;
+  color: #676046 !important;
+  text-shadow: 2px 4px 5px rgba(20, 19, 19, 0.63);
+  margin: 0px;
+}
+
+.nav {
+  width: 100%;
+  margin: 5px;
+  padding-left: 35px;
+  padding-right: 35px;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttonsHome {
+  margin: 5px;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.buttonCreate {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 4px;
+  font-family: "georgia";
+  font-weight: bold;
+  color: #676046 !important;
+  font-size: 15px;
+  text-shadow: 0px 0px 0px #7cacde;
+  box-shadow: 0px 0px 10px #bee2f9;
+  padding: 3px 12px;
+  border-radius: 8px;
+  border: 1px solid #676046;
+  background: #294d63;
+  background: linear-gradient(to top, #b1f8f2, #468ccf);
+}
+.buttonCreate:hover {
+  color: #676046 !important;
+  text-decoration: none;
+  background: linear-gradient(to top, #468ccf, #63b8ee);
+}
+
+.buttonRecharge {
+  padding: 4px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-family: "georgia";
+  font-weight: bold;
+  color: #676046 !important;
+  font-size: 15px;
+  text-shadow: 0px 0px 0px #7cacde;
+  box-shadow: 0px 0px 10px #bee2f9;
+  padding: 3px 12px;
+  border-radius: 8px;
+  border: 1px solid #676046;
+  background: #294d63;
+  background: linear-gradient(to top, #b1f8f2, #468ccf);
+}
+.buttonRecharge:hover {
+  color: #14396a !important;
+  text-decoration: none;
+  background: linear-gradient(to top, #468ccf, #63b8ee);
+}
+
+.principal {
+  height: 100%;
+  background-color: #eafdcf;
+  border-radius: 8px;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 1px;
+  grid-row-gap: 1px;
+}
+
+.card1 {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.card2 {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.card3 {
+  grid-area: 1 / 3 / 2 / 4;
+}
+.card4 {
+  grid-area: 1 / 4 / 2 / 5;
+}
+.card5 {
+  grid-area: 2 / 1 / 3 / 2;
+}
+.card6 {
+  grid-area: 2 / 2 / 3 / 3;
+}
+.card7 {
+  grid-area: 2 / 3 / 3 / 4;
+}
+.card8 {
+  grid-area: 2 / 4 / 3 / 5;
+}
+.card9 {
+  grid-area: 1 / 5 / 2 / 6;
+}
+.card10 {
+  grid-area: 2 / 5 / 3 / 6;
+}
+.card11 {
+  grid-area: 1 / 6 / 2 / 7;
+}
+.card12 {
+  grid-area: 2 / 6 / 3 / 7;
 }

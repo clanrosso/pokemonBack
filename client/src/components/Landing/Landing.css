@@ -1,16 +1,59 @@
 .landing {
-  background: url("");
-  padding-top: 10px;
-}
-.form-container {
+  min-height: 100vh;
+  min-width: 100vh;
+  background-image: url("https://cdn.dribbble.com/users/1771704/screenshots/6124573/pokeball-800x600.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  flex-direction: column;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  justify-content: space-around;
+  align-items: flex-end;
 }
 
-.form-container button {
-  margin-left: 20px;
+.contenido {
+  background: linear-gradient(to top, #c91930, #facebe);
+  min-height: 100vh;
+  width: 500px;
+
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
-.label {
-  padding-right: 10px;
+
+.titleLanding {
+  font-family: cursive;
+  font-size: 1cm;
+  font-style: italic;
+  font-weight: 800;
+  font-variant: small-caps;
+  font-stretch: expanded;
+  color: #fff836 !important;
+  text-shadow: 2px 4px 5px rgba(20, 19, 19, 0.63);
+}
+
+.button {
+  font-family: "trebuchet ms";
+  color: #14396a !important;
+  font-size: 24px;
+  text-shadow: 1px 1px 0px #99a9de;
+  box-shadow: 2px 2px 2px #24282a;
+  padding: 8px 37px;
+  border-radius: 8px;
+  border: 2px solid #3866a3;
+  background: #63b8ee;
+  background: linear-gradient(to top, #63b8ee, #ededed);
+}
+.button:hover {
+  color: #14396a !important;
+  text-decoration: none;
+  background: #468ccf;
+  background: linear-gradient(to top, #468ccf, #63b8ee);
 }

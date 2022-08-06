@@ -103,21 +103,26 @@ const Home = () => {
       </div>
 
       <div className="principal">
-        <Filter
-          filterApiOrDb={filterApiOrDb}
-          filterType={filterType}
-          handleOrder={handleOrder}
-          allTypes={allTypes}
-        />
-        <Paginado
-          allPokemons={pokemonsToRender.length}
-          pokemonsPerPage={pokemonsPerPage}
-          changePage={changePage}
-          currentPage={currentPage}
-        />
+        {pokemonsToRender.length === 0 ? (
+          <h1 className="cargandoHome">Cargando Pokemons...</h1>
+        ) : (
+          <>
+            <Filter
+              filterApiOrDb={filterApiOrDb}
+              filterType={filterType}
+              handleOrder={handleOrder}
+              allTypes={allTypes}
+            />
+            <Paginado
+              allPokemons={pokemonsToRender.length}
+              pokemonsPerPage={pokemonsPerPage}
+              changePage={changePage}
+              currentPage={currentPage}
+            />
+          </>
+        )}
         <div className="cards">
-          {pokemonsToRender.length === 0 ? <h1>Cargando Pokemons...</h1> : null}
-          {pokemonsFinal ? (
+          {pokemonsFinal &&
             pokemonsFinal.map((p) => {
               return (
                 <div className={"card" + contador++} key={p.name}>
@@ -133,10 +138,7 @@ const Home = () => {
                   />
                 </div>
               );
-            })
-          ) : (
-            <h1 className="cargandoHome">Cargando Pokemons...</h1>
-          )}
+            })}
         </div>
         <Paginado
           allPokemons={pokemonsToRender.length}

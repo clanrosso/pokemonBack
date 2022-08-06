@@ -51,7 +51,7 @@ const PokemonDetail = (props) => {
             pokemonDetail.name[0].toUpperCase() + pokemonDetail.name.slice(1)
           }`}</h1>
         ) : (
-          <h2>Buscando Pokemon seleccionado </h2>
+          <h2 className="cargandoForm">Buscando Pokemon seleccionado </h2>
         )}
 
         {pokemonDetail.image ? (
@@ -63,7 +63,7 @@ const PokemonDetail = (props) => {
             height="350px"
           />
         ) : (
-          <h4>Cargando imagen del pokemon...</h4>
+          <h4 className="cargandoForm">Cargando imagen del pokemon...</h4>
         )}
         <Link to={"/home"}>
           <button className="button">Volver</button>
@@ -73,16 +73,16 @@ const PokemonDetail = (props) => {
       <div className="right">
         {pokemonDetail.hp ? (
           <>
-            <h4>{`Tipo: ${typeString}`}</h4>
-            <h4>{`Altura: ${pokemonDetail.height}`}</h4>
-            <h4>{`Peso: ${pokemonDetail.weight}`}</h4>
-            <h4>{`Vida: ${pokemonDetail.hp}`}</h4>
-            <h4>{`Ataque: ${pokemonDetail.attack}`}</h4>
-            <h4>{`Defensa: ${pokemonDetail.defense}`}</h4>
-            <h4>{`Velocidad: ${pokemonDetail.speed}`}</h4>
+            <h4 className="itemDetail">{`Tipo: ${typeString}`}</h4>
+            <h4 className="itemDetail">{`Altura: ${pokemonDetail.height}`}</h4>
+            <h4 className="itemDetail">{`Peso: ${pokemonDetail.weight}`}</h4>
+            <h4 className="itemDetail">{`Vida: ${pokemonDetail.hp}`}</h4>
+            <h4 className="itemDetail">{`Ataque: ${pokemonDetail.attack}`}</h4>
+            <h4 className="itemDetail">{`Defensa: ${pokemonDetail.defense}`}</h4>
+            <h4 className="itemDetail">{`Velocidad: ${pokemonDetail.speed}`}</h4>
           </>
         ) : (
-          <h4>Cargando datos del pokemon...</h4>
+          <h4 className="cargandoForm">Cargando datos del pokemon...</h4>
         )}
       </div>
     </div>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 // Importo las acciones que voy a utilizar
 import { createPokemon, getAllTypes } from "../../redux/actions";
+import "./CreatePokemon.css";
 
 //  FUNCTIONAL COMPONENT!
 
@@ -37,10 +38,6 @@ const CreatePokemon = () => {
     // Inicio un objeto vacío y si entra en algun caso,
     //voy creando distintas keys con un mensaje
     let errors = {};
-    if (Number.isInteger(Number(payload.name)))
-      errors.name = "Debes ingresar un texto";
-    if (Number.isInteger(Number(payload.image)))
-      errors.image = "Debes ingresar un texto";
 
     if (!Number.isInteger(Number(payload.height)))
       errors.height = "Debes ingresar un numero";
@@ -54,6 +51,11 @@ const CreatePokemon = () => {
       errors.defense = "Debes ingresar un numero";
     if (!Number.isInteger(Number(payload.speed)))
       errors.speed = "Debes ingresar un numero";
+
+    if (Number.isInteger(Number(payload.name)))
+      errors.name = "Debes ingresar un texto";
+    if (Number.isInteger(Number(payload.image)))
+      errors.image = "Debes ingresar un texto";
 
     if (payload.hp < 0 || payload.hp > 300)
       errors.hp = "Debes ingresar un valor entre 0 y 300";
@@ -130,129 +132,161 @@ const CreatePokemon = () => {
   };
 
   return (
-    <div>
+    <div className="containerForm">
       <Link to="/home">
-        <button>Volver a la pagina principal</button>
+        <button className="buttonFormBack">Volver a la pagina principal</button>
       </Link>
-      <h1>Crea tu propio Pokemon</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <label>Name: </label>
-        <input
-          type="text"
-          name="name"
-          value={payload.name}
-          onChange={(e) => handleChange(e)}
-        />
-        {
-          // Si tengo erroes para este input, los muestro
-          errors.name && <p>{errors.name}</p>
-        }
+      <h1 className="titleForm">Crea tu propio Pokemon</h1>
+      <form className="form" onSubmit={(e) => handleSubmit(e)}>
+        <div className="item">
+          <label className="label">Name: </label>
+          <input
+            className="inputForm"
+            type="text"
+            name="name"
+            value={payload.name}
+            onChange={(e) => handleChange(e)}
+          />
+          {
+            // Si tengo erroes para este input, los muestro
+            errors.name && <p className="errorForm">{errors.name}</p>
+          }
+        </div>
 
-        <label>Imagen: </label>
-        <input
-          type="text"
-          name="image"
-          value={payload.image}
-          onChange={(e) => handleChange(e)}
-        />
-        {
-          // Si tengo erroes para este input, los muestro
-          errors.image && <p>{errors.image}</p>
-        }
+        <div className="item">
+          <label className="label">Imagen: </label>
+          <input
+            className="inputForm"
+            type="text"
+            name="image"
+            value={payload.image}
+            onChange={(e) => handleChange(e)}
+          />
+          {
+            // Si tengo erroes para este input, los muestro
+            errors.image && <p className="errorForm">{errors.image}</p>
+          }
+        </div>
 
-        <label>Altura: </label>
-        <input
-          type="number"
-          name="height"
-          value={payload.height}
-          onChange={(e) => handleChange(e)}
-        />
-        {
-          // Si tengo erroes para este input, los muestro
-          errors.height && <p>{errors.height}</p>
-        }
+        <div className="item">
+          <label className="label">Altura: </label>
+          <input
+            className="inputForm"
+            type="number"
+            name="height"
+            value={payload.height}
+            onChange={(e) => handleChange(e)}
+          />
+          {
+            // Si tengo erroes para este input, los muestro
+            errors.height && <p className="errorForm">{errors.height}</p>
+          }
+        </div>
 
-        <label>Peso: </label>
-        <input
-          type="number"
-          name="weight"
-          value={payload.weight}
-          onChange={(e) => handleChange(e)}
-        />
-        {
-          // Si tengo erroes para este input, los muestro
-          errors.weight && <p>{errors.weight}</p>
-        }
+        <div className="item">
+          <label className="label">Peso: </label>
+          <input
+            className="inputForm"
+            type="number"
+            name="weight"
+            value={payload.weight}
+            onChange={(e) => handleChange(e)}
+          />
+          {
+            // Si tengo erroes para este input, los muestro
+            errors.weight && <p className="errorForm">{errors.weight}</p>
+          }
+        </div>
 
-        <label>Vida: </label>
-        <input
-          type="number"
-          name="hp"
-          value={payload.hp}
-          onChange={(e) => handleChange(e)}
-        />
-        {
-          // Si tengo erroes para este input, los muestro
-          errors.hp && <p>{errors.hp}</p>
-        }
+        <div className="item">
+          <label className="label">Vida: </label>
+          <input
+            className="inputForm"
+            type="number"
+            name="hp"
+            value={payload.hp}
+            onChange={(e) => handleChange(e)}
+          />
+          {
+            // Si tengo erroes para este input, los muestro
+            errors.hp && <p className="errorForm">{errors.hp}</p>
+          }
+        </div>
 
-        <label>Ataque: </label>
-        <input
-          type="number"
-          name="attack"
-          value={payload.attack}
-          onChange={(e) => handleChange(e)}
-        />
-        {
-          // Si tengo erroes para este input, los muestro
-          errors.attack && <p>{errors.attack}</p>
-        }
+        <div className="item">
+          <label className="label">Ataque: </label>
+          <input
+            className="inputForm"
+            type="number"
+            name="attack"
+            value={payload.attack}
+            onChange={(e) => handleChange(e)}
+          />
+          {
+            // Si tengo erroes para este input, los muestro
+            errors.attack && <p className="errorForm">{errors.attack}</p>
+          }
+        </div>
 
-        <label>Defensa: </label>
-        <input
-          type="number"
-          name="defense"
-          value={payload.defense}
-          onChange={(e) => handleChange(e)}
-        />
-        {
-          // Si tengo erroes para este input, los muestro
-          errors.defense && <p>{errors.defense}</p>
-        }
+        <div className="item">
+          <label className="label">Defensa: </label>
+          <input
+            className="inputForm"
+            type="number"
+            name="defense"
+            value={payload.defense}
+            onChange={(e) => handleChange(e)}
+          />
+          {
+            // Si tengo erroes para este input, los muestro
+            errors.defense && <p className="errorForm">{errors.defense}</p>
+          }
+        </div>
 
-        <label>Velocidad: </label>
-        <input
-          type="number"
-          name="speed"
-          value={payload.speed}
-          onChange={(e) => handleChange(e)}
-        />
-        {
-          // Si tengo erroes para este input, los muestro
-          errors.speed && <p>{errors.speed}</p>
-        }
+        <div className="item">
+          <label className="label">Velocidad: </label>
+          <input
+            className="inputForm"
+            type="number"
+            name="speed"
+            value={payload.speed}
+            onChange={(e) => handleChange(e)}
+          />
+          {
+            // Si tengo erroes para este input, los muestro
+            errors.speed && <p className="errorForm">{errors.speed}</p>
+          }
+        </div>
 
-        <select onChange={(e) => selectChange(e)}>
+        <select className="selectForm" onChange={(e) => selectChange(e)}>
           <option value="all">Selecciona un tipo</option>
           {
             // Mapeo el array de tipos y retorno una opcion por cada tipo
             allTypes &&
               allTypes.map((t) => {
-                return <option value={t.name}>{t.name}</option>;
+                return (
+                  <option value={t.name}>
+                    {t.name[0].toUpperCase() + t.name.slice(1)}
+                  </option>
+                );
               })
           }
         </select>
 
-        <button type="submit">Crear Pokemon</button>
+        <button className="buttonFormSubmit" type="submit">
+          Crear Pokemon
+        </button>
       </form>
-      <div>
+      <div className="containerTypes">
         {
           // Si tengo tipos seleccionados, los muestro, con su boton para eliminarlo
           payload.tipo.map((t) => {
             return (
-              <div key={t.name}>
-                <p>{t}</p>
-                <button onClick={() => deleteTipe(t)}>X</button>
+              <div className="types" key={t.name}>
+                <p>{t[0].toUpperCase() + t.slice(1)}</p>
+                <button className="buttonTypes" onClick={() => deleteTipe(t)}>
+                  X
+                </button>
               </div>
             );
           })

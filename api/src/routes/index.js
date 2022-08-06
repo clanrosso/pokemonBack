@@ -83,6 +83,11 @@ router.post("/pokemons", async (req, res) => {
   const { name, image, height, weight, hp, attack, defense, speed, tipo } =
     req.body;
 
+  // Busco si existe otro pokemon con ese nombre
+  const pokemonsDB = await PokemonFromDB();
+  const pokemonsApi40 = await PokemonsFromApi();
+  const allPokemons = pokemonsApi40.concat(pokemonsDB);
+  const selectedPokemon = allPokemons.find((p) => p.name === name);
   // Hago todas la validaciones con la funcion importada
   const error = validation(
     name,
@@ -94,9 +99,14 @@ router.post("/pokemons", async (req, res) => {
     defense,
     speed
   );
+  // Si existe otro pokemon con ese nombre...
+  if (selectedPokemon) {
+    return res.status(200).send("Ya existe un pokemon con ese nombre");
+    // Sino...
+  }
   // Si obtengo algun mensaje de error de validacion lo envío
-  if (error) {
-    res.status(404).send(error);
+  else if (error) {
+    return res.status(404).send(error);
     // Sino...
   } else {
     try {
@@ -122,10 +132,10 @@ router.post("/pokemons", async (req, res) => {
 
       // Le agrego al nuevo pokemon los tipos (quedan vinculados en la tabla intermedia)
       newPokemon.addTipo(tipoDB);
-      res.status(201).json("Pokemon creado con exito");
+      return res.status(201).json("Pokemon creado con exito");
     } catch (err) {
       console.log(err);
-      res.status(404).send("Error en alguno de los datos provistos");
+      return res.status(404).send("Error en alguno de los datos provistos");
     }
   }
 });

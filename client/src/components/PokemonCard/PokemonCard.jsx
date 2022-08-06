@@ -29,11 +29,11 @@ const PokemonCard = ({ ID, name, type, tipos, image, attack }) => {
 
   return (
     <div className="card">
-      <h1 className="title">{`Nombre: ${
+      <h1 className="titleCard">{`Nombre: ${
         name[0].toUpperCase() + name.slice(1)
       }`}</h1>
       <img
-        className="image"
+        className="imageCard"
         src={image}
         alt="Imagen no encontrada"
         width="200px"

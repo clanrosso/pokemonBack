@@ -13,8 +13,16 @@
   border: 1px solid #676046;
   background: #c0c2ac;
 }
+
+.buttonPaginado:visited {
+  color: #676046 !important;
+  border: 1px solid #676046;
+  background: #4d4d44;
+  text-decoration: none;
+}
 .buttonPaginado:hover {
-  color: #14396a !important;
+  color: #676046 !important;
+  border: 1px solid #676046;
   background: #51a2f0;
   text-decoration: none;
 }

@@ -32,13 +32,13 @@
 
 .titleLanding {
   font-family: "Shadows Into Light", cursive;
-  font-size: 1.3cm;
+  font-size: 1.5cm;
   font-style: italic;
-  font-weight: 800;
+  font-weight: 900;
   font-variant: small-caps;
   font-stretch: expanded;
-  color: #fff836 !important;
-  text-shadow: 2px 2px 7px rgba(20, 19, 19, 0.63);
+  color: #83801d !important;
+  text-shadow: 1px 1px 8px rgba(20, 19, 19, 0.63);
 }
 
 .button {

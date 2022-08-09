@@ -32,6 +32,7 @@ const rootReducer = (state = initialState, action) => {
 
     case GET_POKEMON_BY_NAME:
       const pokemonToRender = [];
+
       // Si el nombre de pokemon buscado en el SearchBar no existe, retorno una alerta
       if (
         action.payload === "El nombre ingresado no corresponde a ningun Pokemon"

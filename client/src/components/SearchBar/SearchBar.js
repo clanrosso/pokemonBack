@@ -22,6 +22,8 @@ export default function SearchBar() {
   // Con esta funcion dispatcho la accion para traer el pokemon elegido
   const handleSubmit = (e) => {
     e.preventDefault();
+    // El name es dato obligatorio, si no está retorno una alerta
+    if (name === "") return alert("Debes ingresar el nombre de algun Pokemon");
     dispatch(getPokemonByName(name));
     setName("");
   };

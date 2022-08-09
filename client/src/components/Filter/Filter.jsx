@@ -38,7 +38,7 @@ const Filter = ({ filterApiOrDb, filterType, handleOrder, allTypes }) => {
         key="order_alfabet"
         onChange={(e) => handleOrder(e)}
       >
-        <option defaultValue disabled>
+        <option selected defaultValue disabled>
           Orden por alfabeto
         </option>
         <option value="asc_alfabet">De la A a la Z</option>
@@ -50,7 +50,7 @@ const Filter = ({ filterApiOrDb, filterType, handleOrder, allTypes }) => {
         key="order_attack"
         onChange={(e) => handleOrder(e)}
       >
-        <option disabled defaultValue>
+        <option selected defaultValue disabled>
           Orden ataque
         </option>
         <option value="desc_attack">Los mas fuertes</option>

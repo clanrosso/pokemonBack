@@ -39,23 +39,23 @@ const CreatePokemon = () => {
     //voy creando distintas keys con un mensaje
     let errors = {};
 
-    if (!Number.isInteger(Number(payload.height)))
-      errors.height = "Debes ingresar un numero";
-    if (!Number.isInteger(Number(payload.weight)))
-      errors.weight = "Debes ingresar un numero";
-    if (!Number.isInteger(Number(payload.hp)))
-      errors.hp = "Debes ingresar un numero";
-    if (!Number.isInteger(Number(payload.attack)))
-      errors.attack = "Debes ingresar un numero";
-    if (!Number.isInteger(Number(payload.defense)))
-      errors.defense = "Debes ingresar un numero";
-    if (!Number.isInteger(Number(payload.speed)))
-      errors.speed = "Debes ingresar un numero";
-
-    if (Number.isInteger(Number(payload.name)))
+    if (Number.isInteger(parseInt(payload.name)))
       errors.name = "Debes ingresar un texto";
-    if (Number.isInteger(Number(payload.image)))
+    if (Number.isInteger(parseInt(payload.image)))
       errors.image = "Debes ingresar un texto";
+
+    if (Number.isNaN(Number(payload.height)))
+      errors.height = "Debes ingresar un numero";
+    if (Number.isNaN(Number(payload.weight)))
+      errors.weight = "Debes ingresar un numero";
+    if (Number.isNaN(Number(payload.hp)))
+      errors.hp = "Debes ingresar un numero";
+    if (Number.isNaN(Number(payload.attack)))
+      errors.attack = "Debes ingresar un numero";
+    if (Number.isNaN(Number(payload.defense)))
+      errors.defense = "Debes ingresar un numero";
+    if (Number.isNaN(Number(payload.speed)))
+      errors.speed = "Debes ingresar un numero";
 
     if (payload.hp < 0 || payload.hp > 300)
       errors.hp = "Debes ingresar un valor entre 0 y 300";

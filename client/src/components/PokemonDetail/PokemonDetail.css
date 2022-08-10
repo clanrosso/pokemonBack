@@ -28,13 +28,11 @@
   top: 10px;
   left: 50px;
   z-index: 1;
-
   padding: 0px;
   margin: 10px;
   border: 1px;
   border-radius: 25px;
   flex-direction: column;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -60,7 +58,7 @@
   border-radius: 15px;
   flex-direction: column;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   font-weight: 500;
 }
@@ -117,7 +115,7 @@
   text-decoration: none;
   color: #ffff00 !important;
   text-shadow: 1px 2px 3px rgba(59, 50, 50, 0.63);
-
+  height: 20px;
   font-size: 0.6cm;
   font-weight: 800;
   font-family: "Poppins", sans-serif;

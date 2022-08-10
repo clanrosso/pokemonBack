@@ -36,10 +36,6 @@ const Home = () => {
   // Defino el array final de pokemones a renderizar por pagina
   const pokemonsFinal = pokemonsToRender.slice(firstPokemon, lastPokemon);
 
-  // Traigo una imagen por defecto por si algun pokemon creado no tiene imagen propia
-  const defectImage =
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMW0cxVHRInlbJZDM-e87igrjnXMoG4AZffA&usqp=CAU";
-
   // Cuando el componente se monte o actualice voy a dispatchar acciones para pedir,
   // todos los pokemons y todos los tipos
   React.useEffect(() => {
@@ -130,7 +126,7 @@ const Home = () => {
                     key={p.ID}
                     ID={p.ID}
                     name={p.name}
-                    image={p.image ? p.image : defectImage}
+                    image={p.image}
                     type={p.type}
                     tipos={p.tipos}
                     inDataBase={p.inDataBase}

@@ -5,8 +5,6 @@ import { Link, useHistory } from "react-router-dom";
 import { createPokemon, getAllTypes } from "../../redux/actions";
 import "./CreatePokemon.css";
 
-//  FUNCTIONAL COMPONENT!
-
 const CreatePokemon = () => {
   // Creo un estado local con un payload que voy a enviar por body hacia el back
   const [payload, setPayload] = React.useState({
@@ -92,6 +90,8 @@ const CreatePokemon = () => {
 
   // Con esta funcion manejo los cambios en el select
   const selectChange = (e) => {
+    if (payload.tipo.length === 3)
+      return alert("Solo puedes seleccionar 3 tipos");
     setPayload({
       ...payload,
       // Voy concatenando los tipos seleccionados
@@ -108,11 +108,13 @@ const CreatePokemon = () => {
   };
 
   // Con esta funcion dispatcho la accion para crear el nuevo pokemon
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     // El name es dato obligatorio, si no está retorno una alerta
-    if (!payload.name)
+    if (payload.name === "")
       return alert("Debes enviar un nombre para el nuevo Pokemon");
+
     // Distpacho la accion
     dispatch(createPokemon(payload));
     // Limpio el payload

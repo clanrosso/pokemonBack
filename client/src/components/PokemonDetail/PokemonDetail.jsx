@@ -86,6 +86,7 @@ export class PokemonDetail extends Component {
               <h4 className="itemDetail">{`Ataque: ${pokemonDetail.attack}`}</h4>
               <h4 className="itemDetail">{`Defensa: ${pokemonDetail.defense}`}</h4>
               <h4 className="itemDetail">{`Velocidad: ${pokemonDetail.speed}`}</h4>
+              <h4 className="itemDetail">{`ID: ${pokemonDetail.ID}`}</h4>
             </>
           ) : (
             <h4 className="cargandoForm">Cargando datos del pokemon...</h4>

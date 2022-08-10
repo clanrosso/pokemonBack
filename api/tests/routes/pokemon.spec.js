@@ -9,7 +9,7 @@ const agent = session(app);
 describe("Pokemon routes", () => {
   conn
     .authenticate()
-    //.then(conn.sync({ force: true }))
+    .then(conn.sync({ force: true }))
     .catch((err) => {
       console.error("Unable to connect to the database:", err);
     });

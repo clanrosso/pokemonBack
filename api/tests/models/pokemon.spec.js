@@ -16,7 +16,7 @@ describe("Pokemon model", () => {
           .catch(() => done());
       });
       it("should throw an error if height is not between 0 and 25", (done) => {
-        Pokemon.create({ height: 30 })
+        Pokemon.create({ height: 20 })
           .then(() => done(new Error("It requires a value between 0 and 25")))
           .catch(() => done());
       });

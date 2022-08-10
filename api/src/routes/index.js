@@ -112,7 +112,7 @@ router.post("/pokemons", async (req, res) => {
     try {
       // Creo el nuevo pokemon
       const newPokemon = await Pokemon.create({
-        name,
+        name: name.toLowerCase(),
         image,
         height,
         weight,
@@ -158,6 +158,21 @@ router.get("/types", async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(404).send("Hubo un error en la busqueda de Tipos de Pokemon");
+  }
+});
+
+// Si recibo un idPokemon por params lo elimino de la DB
+router.delete("/delete/:idPokemon", async (req, res) => {
+  try {
+    const { idPokemon } = req.params;
+
+    await Pokemon.destroy({
+      where: { ID: idPokemon },
+    });
+    res.status(200).send("El Pokemon fue eliminado con exito");
+  } catch (err) {
+    console.log(err);
+    res.status(400).send("No se pudo eliminar el Pokemon");
   }
 });
 

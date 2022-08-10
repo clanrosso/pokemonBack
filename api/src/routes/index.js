@@ -14,6 +14,31 @@ const {
 // Ejecuto Router
 const router = Router();
 
+// Si recibo un idPokemon por params los busco y lo retorno
+router.get("/pokemons/:idPokemon", async (req, res) => {
+  try {
+    const { idPokemon } = req.params;
+    // Traigo los Pokemon de la DB
+    const pokemonsDB = await PokemonFromDB();
+
+    // Busco en la DB, si lo encuentro lo retorno
+    const selectedPokemonDB = await oneFromDB(idPokemon, "ID", pokemonsDB);
+    if (selectedPokemonDB) return res.status(200).send(selectedPokemonDB);
+    else {
+      // Sino, lo busco en la Api, si lo encuentro lo retorno
+      const selectedPokemonApi = await oneFromApi(idPokemon);
+      if (selectedPokemonApi) return res.status(200).send(selectedPokemonApi);
+      else {
+        // Si no lo encuentro respondo esto...
+        res.status(404).send("El ID ingresado no corresponde a ningun Pokemon");
+      }
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(400).send("Hubo un problema con la busqueda");
+  }
+});
+
 // Si recibe un name por query lo busca,
 // sino busca y retorna los 40 primeros Pokemon de la API,
 // y todos los Pokemon de la DB
@@ -46,31 +71,6 @@ router.get("/pokemons", async (req, res) => {
       const pokemonsApi40 = await PokemonsFromApi();
       const allPokemons = pokemonsApi40.concat(pokemonsDB);
       res.status(200).send(allPokemons);
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(400).send("Hubo un problema con la busqueda");
-  }
-});
-
-// Si recibo un idPokemon por params los busco y lo retorno
-router.get("/pokemons/:idPokemon", async (req, res) => {
-  try {
-    const { idPokemon } = req.params;
-    // Traigo los Pokemon de la DB
-    const pokemonsDB = await PokemonFromDB();
-
-    // Busco en la DB, si lo encuentro lo retorno
-    const selectedPokemonDB = await oneFromDB(idPokemon, "ID", pokemonsDB);
-    if (selectedPokemonDB) return res.status(200).send(selectedPokemonDB);
-    else {
-      // Sino, lo busco en la Api, si lo encuentro lo retorno
-      const selectedPokemonApi = await oneFromApi(idPokemon);
-      if (selectedPokemonApi) return res.status(200).send(selectedPokemonApi);
-      else {
-        // Si no lo encuentro respondo esto...
-        res.status(404).send("El ID ingresado no corresponde a ningun Pokemon");
-      }
     }
   } catch (err) {
     console.log(err);
@@ -113,7 +113,9 @@ router.post("/pokemons", async (req, res) => {
       // Creo el nuevo pokemon
       const newPokemon = await Pokemon.create({
         name: name.toLowerCase(),
-        image,
+        image: image
+          ? image
+          : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMW0cxVHRInlbJZDM-e87igrjnXMoG4AZffA&usqp=CAU",
         height,
         weight,
         hp,

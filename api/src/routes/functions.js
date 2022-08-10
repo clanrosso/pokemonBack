@@ -114,7 +114,7 @@ module.exports = {
       error = "Debes enviar un nombre para el nuevo Pokemon";
     }
     // Name e image deben ser strings
-    if (Number.isInteger(Number(name)) || Number.isInteger(Number(image))) {
+    if (Number.isInteger(parseInt(name)) || Number.isInteger(parseInt(image))) {
       error = "Debes ingresar un texto";
     }
     // Las demas propiedades deben ser numeros enteros

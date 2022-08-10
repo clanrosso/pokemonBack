@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
 .searchBar {
   margin-top: 0px;
   margin-bottom: 10px;
@@ -21,13 +23,13 @@
 
 .buttonSearchBar {
   padding: 4px;
-  font-family: "courier new";
+  font-family: "Poppins", sans-serif;
   font-weight: bold;
   color: #676046 !important;
   font-size: 17px;
   text-shadow: 0px 0px 0px #7cacde;
   box-shadow: 0px 0px 10px #bee2f9;
-  padding: 3px 12px;
+  padding: 1px 12px;
   border-radius: 8px;
   border: 1px solid #676046;
   background: linear-gradient(to top, #b1f8f2, #468ccf);

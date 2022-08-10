@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@100;400&display=swap");
 
 .card {
   padding: 15px;
-  flex-direction: column;
+
   background: linear-gradient(to top, #70b2ca, #90eee6);
   width: 215px;
   height: 320px;
@@ -21,29 +23,40 @@
 
 .titleCard {
   color: #676046 !important;
-  text-shadow: 1px 1px 7px rgba(20, 19, 19, 0.63);
-  font-family: "Josefin Sans", sans-serif;
-  font-weight: 600;
+  text-shadow: 1px 1px 1px rgba(20, 19, 19, 0.63);
+  font-family: "Kanit", sans-serif;
+  font-weight: 400;
   font-size: 0.6cm;
-  font-style: italic;
+
   margin: 0px;
   margin-top: 4px;
+}
+
+.buttonsCard {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
 }
 
 .buttonCard {
   margin: 0px;
   margin-bottom: 2px;
-  font-family: "comic sans ms";
-  color: #676046 !important;
+  font-family: "Poppins", sans-serif;
+  color: #4b4633 !important;
   font-size: 15px;
+  font-weight: 400;
   text-shadow: 1px 1px 0px #99a9de;
-  box-shadow: 2px 2px 2px #bee2f9;
+  box-shadow: 1px 1px 1px #bee2f9;
   padding: 1px 10px;
   border-radius: 13px;
   border: 1px solid #676046;
-
   background: linear-gradient(to top, #fffc99, #bcd39c);
 }
+
 .buttonCard:hover {
   color: #676046 !important;
   text-decoration: none;
@@ -53,12 +66,12 @@
 
 .dates {
   text-decoration: none;
-  color: #44420e !important;
-  text-shadow: 1px 1px 7px rgba(20, 19, 19, 0.63);
-  font-family: "Josefin Sans", sans-serif;
+  color: #696716 !important;
+
+  font-family: "Kanit", sans-serif;
   font-size: 0.4cm;
-  font-weight: 200;
-  font-style: italic;
+  font-weight: 100;
+
   margin: 0px;
   width: 100%;
   height: 100px;

@@ -8,6 +8,7 @@ import {
   GET_POKEMON_BY_NAME,
   CREATE_POKEMON,
   GET_POKEMON_BY_ID,
+  DELETE_POKEMON_BY_ID,
 } from "../actions/index";
 
 // Iniciamos un estado
@@ -32,7 +33,6 @@ const rootReducer = (state = initialState, action) => {
 
     case GET_POKEMON_BY_NAME:
       const pokemonToRender = [];
-
       // Si el nombre de pokemon buscado en el SearchBar no existe, retorno una alerta
       if (
         action.payload === "El nombre ingresado no corresponde a ningun Pokemon"
@@ -150,11 +150,17 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case CREATE_POKEMON:
-      console.log(action.payload);
       // Si el nuevo pokemon fue creado con exito, retorno una alerta
       if (action.payload === "Ya existe un pokemon con ese nombre") {
         return alert(action.payload);
       } else if (action.payload === "Pokemon creado con exito") {
+        return alert(action.payload);
+      }
+      break;
+
+    case DELETE_POKEMON_BY_ID:
+      // Cargo los datos para el detalle del pokemon elegido
+      if (action.payload === "El Pokemon fue eliminado con exito") {
         return alert(action.payload);
       }
 

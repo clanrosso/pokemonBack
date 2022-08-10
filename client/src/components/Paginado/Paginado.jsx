@@ -1,8 +1,6 @@
 import React from "react";
 import "./Paginado.css";
 
-//  CLASS COMPONENT!
-
 export default function Paginado({
   allPokemons, // Recibe un numero con la cantidad te pokemons traidos desde el back
   pokemonsPerPage, // Recibe un numero con la cantidad de pokemons que quiero por pagina
@@ -40,7 +38,11 @@ export default function Paginado({
         pageNumbersArray &&
           pageNumbersArray.map((page) => (
             <button
-              className="buttonPaginado"
+              className={
+                page === currentPage
+                  ? "buttonPaginadoSelected"
+                  : "buttonPaginado"
+              }
               key={page}
               onClick={() => {
                 changePage(page);

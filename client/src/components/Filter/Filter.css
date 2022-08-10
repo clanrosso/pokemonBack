@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
 .filter {
   margin: 5px;
   flex-direction: row;
@@ -11,7 +13,7 @@
   margin-left: 5px;
   margin-right: 5px;
   padding: 4px;
-  font-family: "georgia";
+  font-family: "Poppins", sans-serif;
   font-weight: bold;
   color: #676046 !important;
   font-size: 15px;

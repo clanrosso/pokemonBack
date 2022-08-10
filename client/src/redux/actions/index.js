@@ -8,6 +8,7 @@ export const ORDER = "ORDER";
 export const GET_POKEMON_BY_NAME = "GET_POKEMON_BY_NAME";
 export const CREATE_POKEMON = "CREATE_POKEMON";
 export const GET_POKEMON_BY_ID = "GET_POKEMON_BY_ID";
+export const DELETE_POKEMON_BY_ID = "DELETE_POKEMON_BY_ID";
 
 // El middleware "thunk", nos permite trabajar con acciones asincrónicas.
 // Necesitamos hacer uso de este middleware ya que las peticiones al back siempre son asincrónicas,
@@ -46,14 +47,12 @@ export const getPokemonByName = (name) => {
 
 // Usa ruta para buscar un pokemon por id pasado por params.
 export const getPokemonById = (id) => {
-  return function (dispatch) {
+  return async function (dispatch) {
     try {
-      console.log(id);
-      axios("http://localhost:3001/pokemons/" + id, {}).then((response) => {
-        return dispatch({
-          type: GET_POKEMON_BY_ID,
-          payload: response.data,
-        });
+      let response = await axios("http://localhost:3001/pokemons/" + id, {});
+      return dispatch({
+        type: GET_POKEMON_BY_ID,
+        payload: response.data,
       });
     } catch (err) {
       console.log(err);
@@ -114,11 +113,20 @@ export const createPokemon = (payload) => {
   };
 };
 
-/*
-export const getPokemon = (id) => {
+// Usa ruta para eliminar un pokemon por id pasado por params.
+export const deletePokemonById = (id) => {
   return async function (dispatch) {
-    let response = await fetch(`http://localhost:3000/houses/${id}`);
-    return dispatch({ type: GET_HOUSE, payload: response.json() });
+    try {
+      let response = await axios.delete(
+        "http://localhost:3001/delete/" + id,
+        {}
+      );
+      return dispatch({
+        type: DELETE_POKEMON_BY_ID,
+        payload: response.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 };
-*/

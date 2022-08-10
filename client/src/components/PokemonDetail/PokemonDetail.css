@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Shadows+Into+Light&display=swap");
-
 @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&family=Roboto+Slab:wght@700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
 .detail {
   min-height: 100vh;
   min-width: 100vh;
-  background-color: #fffc99;
+  background-color: #b0b03c;
   padding: 0px;
   margin: 0px;
   border: 0px;
@@ -68,12 +68,12 @@
 .name {
   margin: 0px;
   font-family: "Shadows Into Light", cursive;
-  font-size: 1.3cm;
+  font-size: 1.6cm;
   font-style: italic;
   font-weight: 800;
   font-variant: small-caps;
 
-  color: #bcd39c !important;
+  color: #ffff00 !important;
   text-shadow: 1px 2px 3px rgba(20, 19, 19, 0.63);
 }
 
@@ -94,9 +94,10 @@
 }
 
 .button {
-  font-family: "comic sans ms";
+  font-family: "Poppins", sans-serif;
   color: #2f253d !important;
   font-size: 18px;
+  font-weight: 400;
   text-shadow: 1px 1px 0px #99a9de;
   box-shadow: 2px 2px 2px #bee2f9;
   padding: 4px 20px;
@@ -114,21 +115,21 @@
 
 .itemDetail {
   text-decoration: none;
-  color: #fffc99 !important;
+  color: #ffff00 !important;
   text-shadow: 1px 2px 3px rgba(59, 50, 50, 0.63);
 
   font-size: 0.6cm;
   font-weight: 800;
-  font-family: "Comic Neue", cursive;
+  font-family: "Poppins", sans-serif;
   font-style: italic;
   padding: 0px;
 }
 
 .cargandoForm {
   text-decoration: none;
-  color: #fffc99 !important;
+  color: #ffff00 !important;
   text-shadow: 1px 2px 3px rgba(59, 50, 50, 0.63);
-  font-family: "Comic Neue", cursive;
+  font-family: "Poppins", sans-serif;
   font-size: 0.8cm;
   font-weight: 400;
   font-style: italic;

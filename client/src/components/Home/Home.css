@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&family=Roboto+Slab:wght@700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap");
 
 .home {
   background-color: #bcd39c;
@@ -12,14 +14,14 @@
 }
 
 .titleHome {
-  font-family: "Comic Neue", cursive;
+  font-family: "Mouse Memoirs", sans-serif;
   font-size: 1.3cm;
   font-style: italic;
   font-weight: 800;
   font-variant: small-caps;
   font-stretch: expanded;
-  color: #fffc99 !important;
-  text-shadow: 1px 2px 3px rgba(20, 19, 19, 0.63);
+  color: #ffff00 !important;
+  text-shadow: 2px 2px 2px rgba(9, 9, 9, 0.63);
   margin: 0px;
 }
 
@@ -27,10 +29,10 @@
   text-decoration: none;
   color: #676046 !important;
   text-shadow: 1px 2px 3px rgba(59, 50, 50, 0.63);
-  font-family: "Comic Neue", cursive;
+  font-family: "Poppins", sans-serif;
   font-size: 1cm;
   font-weight: 400;
-  font-style: italic;
+
   padding: 0px;
 }
 
@@ -57,7 +59,7 @@
   margin-left: 5px;
   margin-right: 5px;
   padding: 4px;
-  font-family: "georgia";
+  font-family: "Poppins", sans-serif;
   font-weight: bold;
   color: #676046 !important;
   font-size: 15px;
@@ -79,7 +81,7 @@
   padding: 4px;
   margin-left: 5px;
   margin-right: 5px;
-  font-family: "georgia";
+  font-family: "Poppins", sans-serif;
   font-weight: bold;
   color: #676046 !important;
   font-size: 15px;

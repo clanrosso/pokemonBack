@@ -1,17 +1,13 @@
 const axios = require("axios");
-// Importo los modelos de la base de datos
 const { Pokemon, Tipo } = require("../db");
 
-// A esta funcion la voy a usar adentro de otra
-// Le paso como argumento un array (va a tener pbjetos con las estadisticas del pokemon),
+// Le paso como argumento un array (va a tener objetos con las estadisticas del pokemon),
 // el nombre de una estadistica de pokemon que estoy buscando (hp, speed, defense, attack)
 // y una key del objeto que estoy comparando (va a ser "base_stat")
 const findStats = (array, nameStat, key) => {
-  // recorro el array y en cada objeto comparo su name con la estadistica que busco
   const selectedStat = array.find((s) => {
     return s.stat.name === nameStat;
   });
-  // Del objeto seleccionado, retorno el valor de la key base_stat
   return selectedStat[key];
 };
 
@@ -21,16 +17,13 @@ module.exports = {
     const fromApi20 = await axios.get("https://pokeapi.co/api/v2/pokemon"); //20
     const fromApi40 = await axios.get(fromApi20.data.next); //40
     const pokemonsApi1 = fromApi20.data.results;
-    const pokemonsApi = pokemonsApi1.concat(fromApi40.data.results); // concateno
+    const pokemonsApi = pokemonsApi1.concat(fromApi40.data.results);
 
     const pokemonsApiFinal = await Promise.all(
-      // mapeo el array de pokemons y hago una subrequest a la url
       pokemonsApi.map(async (p) => {
         let subRequest = await axios.get(p.url);
-        // Hago un array con las estaditicas
         const statsArray = subRequest.data.stats;
         return {
-          // para cada pokemon solo dejo los datos que necesito
           ID: subRequest.data.id,
           name: p.name,
           image: subRequest.data.sprites.other.home.front_default,
@@ -46,7 +39,6 @@ module.exports = {
   PokemonFromDB: async () => {
     const pokemonsDB = await Pokemon.findAll({
       include: {
-        // incluyo al modelo tipo para que traiga solo su atributo name
         model: Tipo,
         attributes: ["name"],
         through: {
@@ -61,24 +53,20 @@ module.exports = {
   // El argumento puede ser un name o un idPokemon
   oneFromApi: async (arg) => {
     try {
-      // Busco en la API
       const selectedPokemonApi = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${arg}`
       );
-      // Si lo encuentro...
+
       if (selectedPokemonApi) {
-        // Hago un array con las estaditicas
         const statsArray = selectedPokemonApi.data.stats;
         const images = selectedPokemonApi.data.sprites;
         const selectedPokemon = {
-          // solo dejo los datos que necesito
           name: selectedPokemonApi.data.forms[0].name,
           image: images.other.home.front_default,
           type: selectedPokemonApi.data.types.map((t) => t.type.name),
           ID: selectedPokemonApi.data.id,
           height: selectedPokemonApi.data.height,
           weight: selectedPokemonApi.data.weight,
-          // para estos casos usos la funcion que creé primero y el array de estadisticas
           hp: findStats(statsArray, "hp", "base_stat"),
           attack: findStats(statsArray, "attack", "base_stat"),
           defense: findStats(statsArray, "defense", "base_stat"),
@@ -88,7 +76,6 @@ module.exports = {
       }
     } catch (err) {
       console.log(err);
-      //Si no lo encuentra retorno un null
       return null;
     }
   },
@@ -98,7 +85,6 @@ module.exports = {
   // La key es una propiedad del objeto que estoy comparando (va a ser name o ID)
   // Array tiene objetos con todos los pokemon de la DB (pokemonsDB)
   oneFromDB: async (arg, key, array) => {
-    // recorro el array y en cada objeto comparo su key con el arg que busco
     const selectedPokemonDB = array.find((p) => {
       return p[key] === arg;
     });
@@ -107,17 +93,14 @@ module.exports = {
 
   // Esta función va a validar datos en la ruta de post/pokemons
   validation: (name, image, height, weight, hp, attack, defense, speed) => {
-    // Creo un mensaje de error vacío
     let error = "";
-    // Debe recibir un name - Dato obligatório
+
     if (!name) {
       error = "Debes enviar un nombre para el nuevo Pokemon";
     }
-    // Name e image deben ser strings
     if (Number.isInteger(parseInt(name)) || Number.isInteger(parseInt(image))) {
       error = "Debes ingresar un texto";
     }
-    // Las demas propiedades deben ser numeros enteros
     if (
       !Number.isInteger(Number(height)) ||
       !Number.isInteger(Number(weight)) ||
@@ -128,7 +111,6 @@ module.exports = {
     ) {
       error = "Debes ingresar un numero";
     }
-    // Vida, ataque, defensa y velocidad deben tener un numero entre 0 y 300
     if (
       hp < 0 ||
       hp > 300 ||
@@ -142,15 +124,12 @@ module.exports = {
       error =
         "Vida, ataque, defensa y velocidad deben tener un numero entre 0 y 300";
     }
-    // Altura debe tener un numero entre 0 y 25
     if (height < 0 || height > 25) {
       error = "Debes ingresar una altura entre 0 y 25";
     }
-    // Peso debe tener un numero entre 0 y 1500
     if (weight < 0 || weight > 1500) {
       error = "Debes ingresar un peso entre 0 y 1500";
     }
-    //Si hay algun mensaje de error lo retorno
     if (error) return error;
   },
 };

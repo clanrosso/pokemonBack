@@ -4,8 +4,6 @@ import { getPokemonById } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import "./PokemonDetail.css";
 
-//  FUNCTIONAL COMPONENT!
-
 export class PokemonDetail extends Component {
   constructor(props) {
     super(props);
@@ -18,8 +16,6 @@ export class PokemonDetail extends Component {
 
   // Los pokemon de la Api traen un array type ej: [tipo1, tipo2]
   // Los pokemon de la DB traen un array con tipos ej: [{name:tipo1}, {name:tipo2}]
-  // Hago este array para unificarlos
-  // Del array de objetos saco el valor de la propiedad name de cada objeto
 
   unifiedTypes = () => {
     let typeArray = [];
@@ -110,49 +106,3 @@ export const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonDetail);
-
-/*
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getPokemonById } from "../../redux/actions";
-import { Link } from "react-router-dom";
-import "./PokemonDetail.css";
-
-//  FUNCTIONAL COMPONENT!
-
-const PokemonDetail = (props) => {
-  // Ejecuto el useDispatch para poder dispachar una accion de redux
-  const dispatch = useDispatch();
-  const id = props.match.params.id;
-
-  // Al montarse el componente voy a mandar una accion para traer todos los datos del pokemon
-  // cuyo id fue pasado por params
-  React.useEffect(() => {
-    dispatch(getPokemonById(id));
-  }, [dispatch, id]);
-
-  // Traigo los datos del pokemon seleccinado desde el estado de redux
-  const pokemonDetail = useSelector((state) => state.pokemonDetail);
-
-  // Los pokemon de la Api traen un array type ej: [tipo1, tipo2]
-  // Los pokemon de la DB traen un array con tipos ej: [{name:tipo1}, {name:tipo2}]
-  // Hago este array para unificarlos
-  var typeArray = [];
-  // Del array de objetos saco el valor de la propiedad name de cada objeto
-  if (pokemonDetail.tipos) {
-    pokemonDetail.tipos.forEach((t) => {
-      typeArray.push(t.name);
-    });
-  }
-  // Si trae un array type lo paso derecho
-  if (pokemonDetail.type) typeArray = pokemonDetail.type;
-  //Defino un array para renderizar
-  var typeString = " - ";
-  // Recorro el array y agrego cada tipo (pongo la primera letra en mayuscula)
-  for (let i = 0; i < typeArray.length; i++) {
-    typeString =
-      typeString +
-      typeArray[i][0].toUpperCase() +
-      typeArray[i].slice(1) +
-      " - ";
-  }*/

@@ -1,12 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
-// Importo las acciones que voy a utilizar
+import { Link } from "react-router-dom";
 import { createPokemon, getAllTypes } from "../../redux/actions";
 import "./CreatePokemon.css";
 
 const CreatePokemon = () => {
-  // Creo un estado local con un payload que voy a enviar por body hacia el back
   const [payload, setPayload] = React.useState({
     name: "",
     image: "",
@@ -18,23 +16,18 @@ const CreatePokemon = () => {
     speed: "",
     tipo: [],
   });
-  // Creo un estado local con errores, comienza con un objeto vacío
+
   const [errors, setError] = React.useState({});
 
   const dispatch = useDispatch();
-  const history = useHistory();
-  // Traigo todos los tipos de pokemon desde el estado de redux
+
   const allTypes = useSelector((state) => state.allTypes);
 
-  // Al montar el componete dispatcho una accion para pedir todos los tipos de pokemon
   React.useEffect(() => {
     dispatch(getAllTypes());
   }, [dispatch]);
 
-  // Con esta función voy a validar la info ingresa por input
   const validation = (payload) => {
-    // Inicio un objeto vacío y si entra en algun caso,
-    //voy creando distintas keys con un mensaje
     let errors = {};
 
     if (Number.isInteger(parseInt(payload.name)))
@@ -74,12 +67,10 @@ const CreatePokemon = () => {
 
   // Con esta funcion manejo los cambios en los input
   const handleChange = (e) => {
-    // Setéo el payload
     setPayload({
       ...payload,
       [e.target.name]: e.target.value,
     });
-    // Setéo los erroes
     setError(
       validation({
         ...payload,
@@ -94,7 +85,6 @@ const CreatePokemon = () => {
       return alert("Solo puedes seleccionar 3 tipos");
     setPayload({
       ...payload,
-      // Voy concatenando los tipos seleccionados
       tipo: [...payload.tipo, e.target.value],
     });
   };
@@ -110,14 +100,11 @@ const CreatePokemon = () => {
   // Con esta funcion dispatcho la accion para crear el nuevo pokemon
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // El name es dato obligatorio, si no está retorno una alerta
     if (payload.name === "")
       return alert("Debes enviar un nombre para el nuevo Pokemon");
 
-    // Distpacho la accion
     dispatch(createPokemon(payload));
-    // Limpio el payload
+
     setPayload({
       name: "",
       image: "",
@@ -129,8 +116,6 @@ const CreatePokemon = () => {
       speed: "",
       tipo: [],
     });
-    // Redirijo al Home
-    history.push("/home");
   };
 
   return (
@@ -149,10 +134,7 @@ const CreatePokemon = () => {
             value={payload.name}
             onChange={(e) => handleChange(e)}
           />
-          {
-            // Si tengo erroes para este input, los muestro
-            errors.name && <p className="errorForm">{errors.name}</p>
-          }
+          {errors.name && <p className="errorForm">{errors.name}</p>}
         </div>
 
         <div className="item">
@@ -164,10 +146,7 @@ const CreatePokemon = () => {
             value={payload.image}
             onChange={(e) => handleChange(e)}
           />
-          {
-            // Si tengo erroes para este input, los muestro
-            errors.image && <p className="errorForm">{errors.image}</p>
-          }
+          {errors.image && <p className="errorForm">{errors.image}</p>}
         </div>
 
         <div className="item">
@@ -179,10 +158,7 @@ const CreatePokemon = () => {
             value={payload.height}
             onChange={(e) => handleChange(e)}
           />
-          {
-            // Si tengo erroes para este input, los muestro
-            errors.height && <p className="errorForm">{errors.height}</p>
-          }
+          {errors.height && <p className="errorForm">{errors.height}</p>}
         </div>
 
         <div className="item">
@@ -194,10 +170,7 @@ const CreatePokemon = () => {
             value={payload.weight}
             onChange={(e) => handleChange(e)}
           />
-          {
-            // Si tengo erroes para este input, los muestro
-            errors.weight && <p className="errorForm">{errors.weight}</p>
-          }
+          {errors.weight && <p className="errorForm">{errors.weight}</p>}
         </div>
 
         <div className="item">
@@ -209,10 +182,7 @@ const CreatePokemon = () => {
             value={payload.hp}
             onChange={(e) => handleChange(e)}
           />
-          {
-            // Si tengo erroes para este input, los muestro
-            errors.hp && <p className="errorForm">{errors.hp}</p>
-          }
+          {errors.hp && <p className="errorForm">{errors.hp}</p>}
         </div>
 
         <div className="item">
@@ -224,10 +194,7 @@ const CreatePokemon = () => {
             value={payload.attack}
             onChange={(e) => handleChange(e)}
           />
-          {
-            // Si tengo erroes para este input, los muestro
-            errors.attack && <p className="errorForm">{errors.attack}</p>
-          }
+          {errors.attack && <p className="errorForm">{errors.attack}</p>}
         </div>
 
         <div className="item">
@@ -239,10 +206,7 @@ const CreatePokemon = () => {
             value={payload.defense}
             onChange={(e) => handleChange(e)}
           />
-          {
-            // Si tengo erroes para este input, los muestro
-            errors.defense && <p className="errorForm">{errors.defense}</p>
-          }
+          {errors.defense && <p className="errorForm">{errors.defense}</p>}
         </div>
 
         <div className="item">
@@ -254,25 +218,19 @@ const CreatePokemon = () => {
             value={payload.speed}
             onChange={(e) => handleChange(e)}
           />
-          {
-            // Si tengo erroes para este input, los muestro
-            errors.speed && <p className="errorForm">{errors.speed}</p>
-          }
+          {errors.speed && <p className="errorForm">{errors.speed}</p>}
         </div>
 
         <select className="selectForm" onChange={(e) => selectChange(e)}>
           <option value="all">Selecciona un tipo</option>
-          {
-            // Mapeo el array de tipos y retorno una opcion por cada tipo
-            allTypes &&
-              allTypes.map((t) => {
-                return (
-                  <option value={t.name}>
-                    {t.name[0].toUpperCase() + t.name.slice(1)}
-                  </option>
-                );
-              })
-          }
+          {allTypes &&
+            allTypes.map((t) => {
+              return (
+                <option value={t.name}>
+                  {t.name[0].toUpperCase() + t.name.slice(1)}
+                </option>
+              );
+            })}
         </select>
 
         <button className="buttonFormSubmit" type="submit">
@@ -280,19 +238,16 @@ const CreatePokemon = () => {
         </button>
       </form>
       <div className="containerTypes">
-        {
-          // Si tengo tipos seleccionados, los muestro, con su boton para eliminarlo
-          payload.tipo.map((t) => {
-            return (
-              <div className="types" key={t.name}>
-                <p>{t[0].toUpperCase() + t.slice(1)}</p>
-                <button className="buttonTypes" onClick={() => deleteTipe(t)}>
-                  X
-                </button>
-              </div>
-            );
-          })
-        }
+        {payload.tipo.map((t) => {
+          return (
+            <div className="types" key={t.name}>
+              <p>{t[0].toUpperCase() + t.slice(1)}</p>
+              <button className="buttonTypes" onClick={() => deleteTipe(t)}>
+                X
+              </button>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

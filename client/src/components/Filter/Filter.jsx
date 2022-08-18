@@ -20,17 +20,14 @@ const Filter = ({ filterApiOrDb, filterType, handleOrder, allTypes }) => {
         onChange={(e) => filterType(e)}
       >
         <option value="all">Todos los Pokemons</option>
-        {
-          // Mapeo el array de tipos y retorno una opcion por cada tipo
-          allTypes &&
-            allTypes.map((t) => {
-              return (
-                <option key={t.name} value={t.name}>
-                  {t.name[0].toUpperCase() + t.name.slice(1)}
-                </option>
-              );
-            })
-        }
+        {allTypes &&
+          allTypes.map((t) => {
+            return (
+              <option key={t.name} value={t.name}>
+                {t.name[0].toUpperCase() + t.name.slice(1)}
+              </option>
+            );
+          })}
       </select>
 
       <select

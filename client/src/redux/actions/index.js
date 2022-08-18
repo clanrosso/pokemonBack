@@ -10,10 +10,6 @@ export const CREATE_POKEMON = "CREATE_POKEMON";
 export const GET_POKEMON_BY_ID = "GET_POKEMON_BY_ID";
 export const DELETE_POKEMON_BY_ID = "DELETE_POKEMON_BY_ID";
 
-// El middleware "thunk", nos permite trabajar con acciones asincrónicas.
-// Necesitamos hacer uso de este middleware ya que las peticiones al back siempre son asincrónicas,
-// , necesitamos ese "delay" para dispatchar nuestra action hasta que la data nos llegue.
-
 // Usa ruta para buscar todos los pokemons en nuestro back.
 export const getAllPokemons = () => {
   return function (dispatch) {

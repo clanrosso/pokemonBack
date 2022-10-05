@@ -9,17 +9,17 @@
 }
 
 .select {
-  background-color: #bcd39c;
+  background-color: #f6da3a;
   margin-left: 5px;
   margin-right: 5px;
   padding: 4px;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
-  color: #676046 !important;
+  color: #322f22 !important;
   font-size: 15px;
   text-shadow: 0px 0px 0px #7cacde;
 
   padding: 3px 12px;
   border-radius: 8px;
-  border: 1px solid #676046;
+  border: 1px solid #322f22;
 }

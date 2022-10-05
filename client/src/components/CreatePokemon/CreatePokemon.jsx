@@ -124,118 +124,123 @@ const CreatePokemon = () => {
         <button className="buttonFormBack">Volver a la pagina principal</button>
       </Link>
       <h1 className="titleForm">Crea tu propio Pokemon</h1>
-      <form className="form" onSubmit={(e) => handleSubmit(e)}>
-        <div className="item">
-          <label className="label">Name: </label>
-          <input
-            className="inputForm"
-            type="text"
-            name="name"
-            value={payload.name}
-            onChange={(e) => handleChange(e)}
-          />
-          {errors.name && <p className="errorForm">{errors.name}</p>}
+
+      <form className="form">
+        <div className="internoForm">
+          <div className="item">
+            <label className="label">Name: </label>
+            <input
+              className="inputForm"
+              type="text"
+              name="name"
+              value={payload.name}
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.name && <p className="errorForm">{errors.name}</p>}
+          </div>
+
+          <div className="item">
+            <label className="label">Imagen: </label>
+            <input
+              className="inputForm"
+              type="text"
+              name="image"
+              value={payload.image}
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.image && <p className="errorForm">{errors.image}</p>}
+          </div>
+
+          <div className="item">
+            <label className="label">Altura: </label>
+            <input
+              className="inputForm"
+              type="number"
+              name="height"
+              value={payload.height}
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.height && <p className="errorForm">{errors.height}</p>}
+          </div>
+
+          <div className="item">
+            <label className="label">Peso: </label>
+            <input
+              className="inputForm"
+              type="number"
+              name="weight"
+              value={payload.weight}
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.weight && <p className="errorForm">{errors.weight}</p>}
+          </div>
+
+          <div className="item">
+            <label className="label">Vida: </label>
+            <input
+              className="inputForm"
+              type="number"
+              name="hp"
+              value={payload.hp}
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.hp && <p className="errorForm">{errors.hp}</p>}
+          </div>
+
+          <div className="item">
+            <label className="label">Ataque: </label>
+            <input
+              className="inputForm"
+              type="number"
+              name="attack"
+              value={payload.attack}
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.attack && <p className="errorForm">{errors.attack}</p>}
+          </div>
+
+          <div className="item">
+            <label className="label">Defensa: </label>
+            <input
+              className="inputForm"
+              type="number"
+              name="defense"
+              value={payload.defense}
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.defense && <p className="errorForm">{errors.defense}</p>}
+          </div>
+
+          <div className="item">
+            <label className="label">Velocidad: </label>
+            <input
+              className="inputForm"
+              type="number"
+              name="speed"
+              value={payload.speed}
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.speed && <p className="errorForm">{errors.speed}</p>}
+          </div>
         </div>
 
-        <div className="item">
-          <label className="label">Imagen: </label>
-          <input
-            className="inputForm"
-            type="text"
-            name="image"
-            value={payload.image}
-            onChange={(e) => handleChange(e)}
-          />
-          {errors.image && <p className="errorForm">{errors.image}</p>}
+        <div className="internoForm">
+          <select className="selectForm" onChange={(e) => selectChange(e)}>
+            <option value="all">Selecciona un tipo</option>
+            {allTypes &&
+              allTypes.map((t) => {
+                return (
+                  <option value={t.name}>
+                    {t.name[0].toUpperCase() + t.name.slice(1)}
+                  </option>
+                );
+              })}
+          </select>
+
+          <button onClick={(e) => handleSubmit(e)} className="buttonFormSubmit">
+            Crear Pokemon
+          </button>
         </div>
-
-        <div className="item">
-          <label className="label">Altura: </label>
-          <input
-            className="inputForm"
-            type="number"
-            name="height"
-            value={payload.height}
-            onChange={(e) => handleChange(e)}
-          />
-          {errors.height && <p className="errorForm">{errors.height}</p>}
-        </div>
-
-        <div className="item">
-          <label className="label">Peso: </label>
-          <input
-            className="inputForm"
-            type="number"
-            name="weight"
-            value={payload.weight}
-            onChange={(e) => handleChange(e)}
-          />
-          {errors.weight && <p className="errorForm">{errors.weight}</p>}
-        </div>
-
-        <div className="item">
-          <label className="label">Vida: </label>
-          <input
-            className="inputForm"
-            type="number"
-            name="hp"
-            value={payload.hp}
-            onChange={(e) => handleChange(e)}
-          />
-          {errors.hp && <p className="errorForm">{errors.hp}</p>}
-        </div>
-
-        <div className="item">
-          <label className="label">Ataque: </label>
-          <input
-            className="inputForm"
-            type="number"
-            name="attack"
-            value={payload.attack}
-            onChange={(e) => handleChange(e)}
-          />
-          {errors.attack && <p className="errorForm">{errors.attack}</p>}
-        </div>
-
-        <div className="item">
-          <label className="label">Defensa: </label>
-          <input
-            className="inputForm"
-            type="number"
-            name="defense"
-            value={payload.defense}
-            onChange={(e) => handleChange(e)}
-          />
-          {errors.defense && <p className="errorForm">{errors.defense}</p>}
-        </div>
-
-        <div className="item">
-          <label className="label">Velocidad: </label>
-          <input
-            className="inputForm"
-            type="number"
-            name="speed"
-            value={payload.speed}
-            onChange={(e) => handleChange(e)}
-          />
-          {errors.speed && <p className="errorForm">{errors.speed}</p>}
-        </div>
-
-        <select className="selectForm" onChange={(e) => selectChange(e)}>
-          <option value="all">Selecciona un tipo</option>
-          {allTypes &&
-            allTypes.map((t) => {
-              return (
-                <option value={t.name}>
-                  {t.name[0].toUpperCase() + t.name.slice(1)}
-                </option>
-              );
-            })}
-        </select>
-
-        <button className="buttonFormSubmit" type="submit">
-          Crear Pokemon
-        </button>
       </form>
       <div className="containerTypes">
         {payload.tipo.map((t) => {

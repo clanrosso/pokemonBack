@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Shadows+Into+Light&display=swap");
 
 .containerForm {
   height: 100vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)),
     url("https://cdn.dribbble.com/users/1771704/screenshots/6536854/both-pokeballs_4x.png?compress=1&resize=320x240&vertical=top");
   background-repeat: no-repeat;
-
   background-position: center center;
   background-size: cover;
   flex-direction: column;
@@ -19,8 +19,8 @@
 }
 
 .form {
-  background-color: #eafdcf80;
-  flex-direction: column;
+  background-color: #a1af8e80;
+  flex-direction: row;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -28,19 +28,27 @@
   border-radius: 8px;
   padding: 15px;
   margin: 10px;
-  width: 700px;
+  width: 800px;
+  height: 400px;
+}
+
+.internoForm {
+  height: 400px;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .titleForm {
-  font-family: "Mouse Memoirs", sans-serif;
+  font-family: "Shadows Into Light", cursive;
   font-size: 1.3cm;
   font-style: italic;
   font-weight: 700;
   font-stretch: expanded;
   font-variant: small-caps;
   font-stretch: expanded;
-  color: #ffff00 !important;
-  text-shadow: 5px 5px 5px rgba(9, 9, 9, 0.63);
+  color: #ffd700 !important;
   margin: 0px;
 }
 
@@ -49,20 +57,15 @@
   padding: 4px;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
-  color: #676046 !important;
   font-size: 15px;
-  text-shadow: 0px 0px 0px #7cacde;
-  box-shadow: 0px 0px 10px #bee2f9;
   padding: 3px 12px;
   border-radius: 8px;
-  border: 1px solid #676046;
-  background: #294d63;
-  background: linear-gradient(to top, #b1f8f2, #468ccf);
+  border: 1px solid #ffd700;
+  background-color: #ffd700;
 }
 .buttonFormBack:hover {
-  color: #676046 !important;
   text-decoration: none;
-  background: linear-gradient(to top, #468ccf, #63b8ee);
+  background-color: #f6da3a;
 }
 
 .item {
@@ -76,21 +79,19 @@
 .inputForm {
   margin: 5px;
   border-radius: 3px;
-  background-color: rgb(236, 244, 244);
+  background-color: rgb(160, 160, 160);
   padding: 4px;
   border: none;
-  width: 100px;
+  width: 200px;
 }
 
 .label {
   margin: 5px;
-
   padding: 4px;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
-  color: #4f4b3b !important;
-  font-size: 15px;
-  text-shadow: 0px 0px 0px #7cacde;
+  color: #ffd700 !important;
+  font-size: 22px;
 }
 
 .errorForm {
@@ -101,42 +102,38 @@
 }
 
 .selectForm {
-  background-color: #bcd39c;
+  background-color: #f6da3a;
   margin: 5px;
   padding: 4px;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
-  color: #676046 !important;
+  color: #322f22 !important;
   font-size: 15px;
-  text-shadow: 0px 0px 0px #7cacde;
-
+  width: 200px;
   padding: 3px 12px;
   border-radius: 8px;
-  border: 1px solid #676046;
+  border: 1px solid #322f22;
 }
 
 .buttonFormSubmit {
-  padding: 4px;
+  width: 200px;
+  padding: 5px;
   margin: 5px;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
-  color: #676046 !important;
-  font-size: 17px;
-  text-shadow: 0px 0px 0px #7cacde;
-  box-shadow: 0px 0px 10px #bee2f9;
+  font-size: 25px;
   padding: 3px 12px;
   border-radius: 8px;
-  border: 1px solid #676046;
-  background: linear-gradient(to top, #b1f8f2, #468ccf);
+  border: 1px solid #ffd700;
+  background-color: #ffd700;
 }
 .buttonFormSubmit:hover {
-  color: #676046 !important;
   text-decoration: none;
-  background: linear-gradient(to top, #468ccf, #63b8ee);
+  background-color: #f6da3a;
 }
 
 .containerTypes {
-  background-color: #eafdcf80;
+  background-color: #a1af8e80;
   flex-direction: row;
   display: flex;
   justify-content: space-around;
@@ -145,41 +142,39 @@
   border-radius: 8px;
   padding: 2px;
   margin: 10px;
-  width: 700px;
-  height: 50px;
+  width: 825px;
+  height: 100px;
 }
 
 .types {
   margin: 0px;
   height: 30px;
-  background-color: #eafdcf;
+  background-color: #f6da3a;
   flex-direction: row;
   display: flex;
   justify-content: space-around;
   align-items: center;
   border: 2px;
-  border-color: #676046;
+  border-color: solid 3px #322f22;
   border-radius: 8px;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
-  color: #676046 !important;
+  color: #322f22 !important;
+  padding: 5px;
 }
 
 .buttonTypes {
-  margin: 2px;
+  margin: 4px;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
-  color: #676046 !important;
+  color: #322f22 !important;
   font-size: 17px;
-  text-shadow: 0px 0px 0px #7cacde;
-  box-shadow: 0px 0px 10px #bee2f9;
-
   border-radius: 25px;
-  border: 1px solid #676046;
-  background: linear-gradient(to top, #b1f8f2, #468ccf);
+  border: 1px solid #030303;
+  background-color: #ffd700;
 }
 .buttonTypes:hover {
-  color: #676046 !important;
+  color: #ffd700 !important;
   text-decoration: none;
-  background: linear-gradient(to top, #468ccf, #63b8ee);
+  background-color: #030303;
 }

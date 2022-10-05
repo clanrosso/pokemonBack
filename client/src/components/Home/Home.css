@@ -1,9 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&family=Roboto+Slab:wght@700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Shadows+Into+Light&display=swap");
 
 .home {
-  background-color: #bcd39c;
+  background-color: #30312f;
   flex-direction: column;
   display: flex;
   justify-content: space-around;
@@ -14,14 +15,14 @@
 }
 
 .titleHome {
-  font-family: "Mouse Memoirs", sans-serif;
-  font-size: 1.3cm;
+  font-family: "Shadows Into Light", cursive;
+  font-size: 1.4cm;
   font-style: italic;
-  font-weight: 800;
+  font-weight: 900;
   font-variant: small-caps;
   font-stretch: expanded;
-  color: #ffff00 !important;
-  text-shadow: 2px 2px 2px rgba(9, 9, 9, 0.63);
+  color: #ffd700 !important;
+
   margin: 0px;
 }
 
@@ -61,20 +62,15 @@
   padding: 4px;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
-  color: #676046 !important;
   font-size: 15px;
-  text-shadow: 0px 0px 0px #7cacde;
-  box-shadow: 0px 0px 10px #bee2f9;
   padding: 3px 12px;
   border-radius: 8px;
-  border: 1px solid #676046;
-  background: #294d63;
-  background: linear-gradient(to top, #b1f8f2, #468ccf);
+  border: 1px solid #ffd700;
+  background-color: #ffd700;
 }
 .buttonCreate:hover {
-  color: #676046 !important;
   text-decoration: none;
-  background: linear-gradient(to top, #468ccf, #63b8ee);
+  background-color: #f6da3a;
 }
 
 .buttonRecharge {
@@ -83,27 +79,22 @@
   margin-right: 5px;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
-  color: #676046 !important;
   font-size: 15px;
-  text-shadow: 0px 0px 0px #7cacde;
-  box-shadow: 0px 0px 10px #bee2f9;
   padding: 3px 12px;
   border-radius: 8px;
-  border: 1px solid #676046;
-  background: #294d63;
-  background: linear-gradient(to top, #b1f8f2, #468ccf);
+  border: 1px solid #ffd700;
+  background-color: #ffd700;
 }
+
 .buttonRecharge:hover {
-  color: #14396a !important;
   text-decoration: none;
-  background: linear-gradient(to top, #468ccf, #63b8ee);
+  background-color: #f6da3a;
 }
 
 .principal {
   height: 100%;
   min-width: 95%;
   min-height: 800px;
-  background-color: #eafdcf80;
   border-radius: 8px;
   flex-direction: column;
   display: flex;
@@ -111,6 +102,7 @@
   align-items: center;
   margin-left: 10px;
   margin-right: 10px;
+  margin-top: 25px;
 }
 
 .cards {

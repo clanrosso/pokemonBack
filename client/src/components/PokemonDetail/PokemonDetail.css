@@ -5,7 +5,7 @@
 .detail {
   min-height: 100vh;
   min-width: 100vh;
-  background-color: #b0b03c;
+  background-color: #30312f;
   padding: 0px;
   margin: 0px;
   border: 0px;
@@ -18,8 +18,8 @@
 .left {
   min-height: 85vh;
   min-width: 120vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
-    url("https://cdn.dribbble.com/users/357655/screenshots/15228122/media/6d904bae2bec688419d90ed88fceac5f.png?compress=1&resize=320x240&vertical=top");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("https://res.cloudinary.com/dtrsxymgq/image/upload/v1664942743/Pokemon/blue-diagonal-anime-speed-lines-260nw-1445397173_yzmupr.webp");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
@@ -42,10 +42,9 @@
   min-height: 95vh;
   height: 95vh;
   min-width: 45%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
-    url("https://cdn.dribbble.com/users/10562/screenshots/15204799/media/8cc23950f6da3ce6edebe2fd9e2101ff.jpg?compress=1&resize=320x240&vertical=top");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)),
+    url("https://res.cloudinary.com/dtrsxymgq/image/upload/v1664919028/Pokemon/pokemon-1624022__340_dw8nzu.webp");
   background-repeat: no-repeat;
-
   background-position: center center;
   background-size: cover;
   position: relative;
@@ -70,51 +69,44 @@
   font-style: italic;
   font-weight: 800;
   font-variant: small-caps;
-
-  color: #ffff00 !important;
-  text-shadow: 1px 2px 3px rgba(20, 19, 19, 0.63);
+  color: #ffd700 !important;
 }
 
 .imageDetail {
   margin: 0px;
   padding: 0px;
-  width: 360px;
-  height: 360px;
+  width: 350px;
+  height: 350px;
   float: right;
 }
 
 .imageDetail:hover {
   margin: 0px;
   padding: 0px;
-  width: 390px;
-  height: 390px;
+  width: 370px;
+  height: 370px;
   float: right;
 }
 
 .button {
   font-family: "Poppins", sans-serif;
   color: #2f253d !important;
-  font-size: 18px;
-  font-weight: 400;
-  text-shadow: 1px 1px 0px #99a9de;
-  box-shadow: 2px 2px 2px #bee2f9;
-  padding: 4px 20px;
+  font-size: 25px;
+  font-weight: 600;
+  padding: 6px 20px;
   border-radius: 13px;
-  border: 2px solid #3866a3;
   margin: 15px;
-  background: linear-gradient(to top, #fffc99, #997e74);
+  border: 1px solid #ffd700;
+  background-color: #ffd700;
 }
 .button:hover {
-  color: #14396a !important;
   text-decoration: none;
-  background: #997e74;
-  background: linear-gradient(to top, #997e74, #fffc99);
+  background-color: #f6da3a;
 }
 
 .itemDetail {
   text-decoration: none;
-  color: #ffff00 !important;
-  text-shadow: 1px 2px 3px rgba(59, 50, 50, 0.63);
+  color: #ffd700 !important;
   height: 20px;
   font-size: 0.6cm;
   font-weight: 800;

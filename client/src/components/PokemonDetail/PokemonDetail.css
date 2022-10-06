@@ -67,9 +67,10 @@
   font-family: "Shadows Into Light", cursive;
   font-size: 1.6cm;
   font-style: italic;
-  font-weight: 800;
+  font-weight: 900;
   font-variant: small-caps;
   color: #ffd700 !important;
+  font-stretch: expanded;
 }
 
 .imageDetail {
@@ -116,12 +117,10 @@
 }
 
 .cargandoForm {
-  text-decoration: none;
-  color: #ffff00 !important;
-  text-shadow: 1px 2px 3px rgba(59, 50, 50, 0.63);
-  font-family: "Poppins", sans-serif;
-  font-size: 0.8cm;
-  font-weight: 400;
-  font-style: italic;
-  padding: 0px;
+  min-height: 65vh;
+  min-width: 100vh;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }

@@ -26,7 +26,19 @@
   align-items: center;
 }
 
+.textLanding {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7cm;
+  font-weight: 300;
+  color: #078729cb !important;
+  margin-top: 0px;
+  margin-bottom: 70px;
+  padding: 0px;
+}
+
 .titleLanding {
+  margin: 0px;
+  padding: 0px;
   text-decoration: none;
   font-family: "Shadows Into Light", cursive;
   font-size: 2.5cm;

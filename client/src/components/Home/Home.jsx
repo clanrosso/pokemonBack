@@ -14,12 +14,14 @@ import PokemonCard from "../PokemonCard/PokemonCard";
 import Paginado from "../Paginado/Paginado";
 import SearchBar from "../SearchBar/SearchBar";
 import Filter from "../Filter/Filter";
+
 import "./Home.css";
 
 const Home = () => {
   const dispatch = useDispatch();
   const pokemonsToRender = useSelector((state) => state.pokemonsToRender);
   const allTypes = useSelector((state) => state.allTypes);
+  const data = useSelector((state) => state.data);
 
   const [currentPage, setCurrentPage] = React.useState(1);
   const [pokemonsPerPage] = React.useState(12);
@@ -30,8 +32,8 @@ const Home = () => {
   const pokemonsFinal = pokemonsToRender.slice(firstPokemon, lastPokemon);
 
   React.useEffect(() => {
-    dispatch(getAllPokemons());
     dispatch(getAllTypes());
+    dispatch(getAllPokemons());
   }, [dispatch]);
 
   // Con esta funsion voy a setear la pagina actual
@@ -88,8 +90,13 @@ const Home = () => {
       </div>
 
       <div className="principal">
-        {pokemonsToRender.length === 0 ? (
-          <h1 className="cargandoHome">Cargando Pokemons...</h1>
+        {data === null ? (
+          <div className="cargandoHome">
+            <img
+              src="https://res.cloudinary.com/dtrsxymgq/image/upload/c_scale,h_100,w_200/v1665006790/Pokemon/6689dc331be27e66349ce9a4d15ddff3_mynrbx.gif"
+              alt="Loading"
+            />
+          </div>
         ) : (
           <>
             <Filter
@@ -98,39 +105,45 @@ const Home = () => {
               handleOrder={handleOrder}
               allTypes={allTypes}
             />
-            <Paginado
-              allPokemons={pokemonsToRender.length}
-              pokemonsPerPage={pokemonsPerPage}
-              changePage={changePage}
-              currentPage={currentPage}
-            />
+            {pokemonsFinal.length ? (
+              <>
+                <Paginado
+                  allPokemons={pokemonsToRender.length}
+                  pokemonsPerPage={pokemonsPerPage}
+                  changePage={changePage}
+                  currentPage={currentPage}
+                />
+
+                <div className="cards">
+                  {pokemonsFinal.map((p) => {
+                    return (
+                      <div className={"card" + contador++} key={p.name}>
+                        <PokemonCard
+                          key={p.ID}
+                          ID={p.ID}
+                          name={p.name}
+                          image={p.image}
+                          type={p.type}
+                          tipos={p.tipos}
+                          inDataBase={p.inDataBase}
+                          attack={p.attack}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+                <Paginado
+                  allPokemons={pokemonsToRender.length}
+                  pokemonsPerPage={pokemonsPerPage}
+                  changePage={changePage}
+                  currentPage={currentPage}
+                />
+              </>
+            ) : (
+              <h1 className="arrayVacio">No hay pokemones de este tipo</h1>
+            )}
           </>
         )}
-        <div className="cards">
-          {pokemonsFinal &&
-            pokemonsFinal.map((p) => {
-              return (
-                <div className={"card" + contador++} key={p.name}>
-                  <PokemonCard
-                    key={p.ID}
-                    ID={p.ID}
-                    name={p.name}
-                    image={p.image}
-                    type={p.type}
-                    tipos={p.tipos}
-                    inDataBase={p.inDataBase}
-                    attack={p.attack}
-                  />
-                </div>
-              );
-            })}
-        </div>
-        <Paginado
-          allPokemons={pokemonsToRender.length}
-          pokemonsPerPage={pokemonsPerPage}
-          changePage={changePage}
-          currentPage={currentPage}
-        />
       </div>
     </div>
   );

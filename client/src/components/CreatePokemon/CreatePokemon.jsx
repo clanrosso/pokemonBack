@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { createPokemon, getAllTypes } from "../../redux/actions";
 import "./CreatePokemon.css";
+import Swal from "sweetalert2";
 
 const CreatePokemon = () => {
   const [payload, setPayload] = React.useState({
@@ -82,7 +83,17 @@ const CreatePokemon = () => {
   // Con esta funcion manejo los cambios en el select
   const selectChange = (e) => {
     if (payload.tipo.length === 3)
-      return alert("Solo puedes seleccionar 3 tipos");
+      return Swal.fire({
+        title: "Solo puedes seleccionar 3 tipos",
+        background: "#545552",
+        color: "#ffd700",
+        confirmButtonColor: "#ffd700",
+        imageAlt: "Custom image",
+        showClass: {
+          popup: "animate_animated animate_flipInY",
+        },
+      });
+
     setPayload({
       ...payload,
       tipo: [...payload.tipo, e.target.value],
@@ -101,7 +112,16 @@ const CreatePokemon = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (payload.name === "")
-      return alert("Debes enviar un nombre para el nuevo Pokemon");
+      return Swal.fire({
+        title: "Debes enviar un nombre para el nuevo Pokemon",
+        background: "#545552",
+        color: "#ffd700",
+        confirmButtonColor: "#ffd700",
+        imageAlt: "Custom image",
+        showClass: {
+          popup: "animate_animated animate_flipInY",
+        },
+      });
 
     dispatch(createPokemon(payload));
 

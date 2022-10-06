@@ -9,6 +9,9 @@ const Filter = ({ filterApiOrDb, filterType, handleOrder, allTypes }) => {
         key="filterApiOrDb"
         onChange={(e) => filterApiOrDb(e)}
       >
+        <option selected defaultValue disabled>
+          Existentes o creados
+        </option>
         <option value="all">Todos los Pokemons</option>
         <option value="db">Pokemons creados</option>
         <option value="api">Pokemons existentes</option>
@@ -19,6 +22,9 @@ const Filter = ({ filterApiOrDb, filterType, handleOrder, allTypes }) => {
         key="filterType"
         onChange={(e) => filterType(e)}
       >
+        <option selected defaultValue disabled>
+          Selecciona un tipo
+        </option>
         <option value="all">Todos los Pokemons</option>
         {allTypes &&
           allTypes.map((t) => {

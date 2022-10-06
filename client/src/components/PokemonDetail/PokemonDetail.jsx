@@ -48,24 +48,27 @@ export class PokemonDetail extends Component {
     return (
       <div className="detail">
         <div className="left">
-          {pokemonDetail.name ? (
-            <h1 className="name">{`Nombre: ${
-              pokemonDetail.name[0].toUpperCase() + pokemonDetail.name.slice(1)
-            }`}</h1>
-          ) : (
-            <h2 className="cargandoForm">Buscando Pokemon seleccionado </h2>
-          )}
-
           {pokemonDetail.image ? (
-            <img
-              className="imageDetail"
-              src={pokemonDetail.image}
-              alt="Imagen no encontrada"
-              width="300px"
-              height="350px"
-            />
+            <>
+              <h1 className="name">
+                {pokemonDetail.name[0].toUpperCase() +
+                  pokemonDetail.name.slice(1)}
+              </h1>
+              <img
+                className="imageDetail"
+                src={pokemonDetail.image}
+                alt="Imagen no encontrada"
+                width="300px"
+                height="350px"
+              />
+            </>
           ) : (
-            <h4 className="cargandoForm">Cargando imagen del pokemon...</h4>
+            <div className="cargandoForm">
+              <img
+                src="https://res.cloudinary.com/dtrsxymgq/image/upload/c_scale,h_100,w_200/v1665006790/Pokemon/6689dc331be27e66349ce9a4d15ddff3_mynrbx.gif"
+                alt="Loading"
+              />
+            </div>
           )}
           <Link to={"/home"}>
             <button className="button">Volver</button>
@@ -84,9 +87,7 @@ export class PokemonDetail extends Component {
               <h4 className="itemDetail">{`Velocidad: ${pokemonDetail.speed}`}</h4>
               <h4 className="itemDetail">{`ID: ${pokemonDetail.ID}`}</h4>
             </>
-          ) : (
-            <h4 className="cargandoForm">Cargando datos del pokemon...</h4>
-          )}
+          ) : null}
         </div>
       </div>
     );

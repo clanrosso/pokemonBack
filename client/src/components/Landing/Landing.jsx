@@ -9,6 +9,7 @@ class Landing extends Component {
       <div className="landing">
         <div className="internoLanding">
           <h1 className="titleLanding">The amazing Pokeworld!</h1>
+          <p className="textLanding">Por Claudio Rosso</p>
           <Link to="/home">
             <button className="buttonLanding" type="submit">
               INGRESAR

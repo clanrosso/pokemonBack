@@ -1,4 +1,5 @@
 // Importo las actions
+import Swal from "sweetalert2";
 import {
   GET_ALL_P0KEMONS,
   FILTER_BY_TYPE,
@@ -17,6 +18,7 @@ const initialState = {
   pokemonsToRender: [],
   pokemonDetail: {},
   allTypes: [],
+  data: null,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -28,6 +30,7 @@ const rootReducer = (state = initialState, action) => {
         allPokemons: action.payload,
         pokemonsToRender: action.payload,
         pokemonDetail: {},
+        data: true,
       };
 
     // Cargo nombre buscado en el searchbar
@@ -36,12 +39,22 @@ const rootReducer = (state = initialState, action) => {
       if (
         action.payload === "El nombre ingresado no corresponde a ningun Pokemon"
       ) {
-        alert(action.payload);
+        Swal.fire({
+          title: "El nombre ingresado no corresponde a ningun Pokemon",
+          background: "#545552",
+          color: "#ffd700",
+          confirmButtonColor: "#ffd700",
+          imageAlt: "Custom image",
+          showClass: {
+            popup: "animate_animated animate_flipInY",
+          },
+        });
       } else {
         pokemonToRender.push(action.payload);
         return {
           ...state,
           pokemonsToRender: pokemonToRender,
+          data: true,
         };
       }
       return state;
@@ -51,6 +64,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemonDetail: action.payload,
+        data: true,
       };
 
     case FILTER_CREATED:
@@ -138,16 +152,43 @@ const rootReducer = (state = initialState, action) => {
     // Si el nuevo pokemon fue creado con exito, retorno una alerta
     case CREATE_POKEMON:
       if (action.payload === "Ya existe un pokemon con ese nombre") {
-        return alert(action.payload);
+        Swal.fire({
+          title: "Ya existe un pokemon con ese nombr",
+          background: "#545552",
+          color: "#ffd700",
+          confirmButtonColor: "#ffd700",
+          imageAlt: "Custom image",
+          showClass: {
+            popup: "animate_animated animate_flipInY",
+          },
+        });
       } else if (action.payload === "Pokemon creado con exito") {
-        return alert(action.payload);
+        Swal.fire({
+          title: "Pokemon creado con exito",
+          background: "#545552",
+          color: "#ffd700",
+          confirmButtonColor: "#ffd700",
+          imageAlt: "Custom image",
+          showClass: {
+            popup: "animate_animated animate_flipInY",
+          },
+        });
       }
       break;
 
     // Si el pokemon fue elimiado con exito, retorno una alerta
     case DELETE_POKEMON_BY_ID:
       if (action.payload === "El Pokemon fue eliminado con exito") {
-        return alert(action.payload);
+        Swal.fire({
+          title: "El Pokemon fue eliminado con exito",
+          background: "#545552",
+          color: "#ffd700",
+          confirmButtonColor: "#ffd700",
+          imageAlt: "Custom image",
+          showClass: {
+            popup: "animate_animated animate_flipInY",
+          },
+        });
       }
       break;
 

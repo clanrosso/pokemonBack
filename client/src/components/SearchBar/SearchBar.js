@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getPokemonByName } from "../../redux/actions";
 import "./SearchBar.css";
+import Swal from "sweetalert2";
 
 export class SearchBar extends Component {
   constructor(props) {
@@ -27,7 +28,17 @@ export class SearchBar extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.state.name === "")
-      return alert("Debes ingresar el nombre de algun Pokemon");
+      return Swal.fire({
+        text: "Debes ingresar el nombre de algun Pokemon",
+        background: "#545552",
+        color: "#ffd700",
+        confirmButtonColor: "#ffd700",
+        imageAlt: "Custom image",
+        showClass: {
+          popup: "animate_animated animate_flipInY",
+        },
+      });
+
     this.props.getPokemonByName(this.state.name);
     this.setState({
       name: "",

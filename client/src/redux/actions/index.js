@@ -14,9 +14,11 @@ export const DELETE_POKEMON_BY_ID = "DELETE_POKEMON_BY_ID";
 export const getAllPokemons = () => {
   return function (dispatch) {
     try {
-      axios("http://localhost:3001/pokemons", {}).then((response) => {
-        return dispatch({ type: GET_ALL_P0KEMONS, payload: response.data });
-      });
+      axios("https://the-amazing-pokeword.herokuapp.com/pokemons", {}).then(
+        (response) => {
+          return dispatch({ type: GET_ALL_P0KEMONS, payload: response.data });
+        }
+      );
     } catch (err) {
       console.log(err);
     }
@@ -27,14 +29,15 @@ export const getAllPokemons = () => {
 export const getPokemonByName = (name) => {
   return function (dispatch) {
     try {
-      axios("http://localhost:3001/pokemons?name=" + name, {}).then(
-        (response) => {
-          return dispatch({
-            type: GET_POKEMON_BY_NAME,
-            payload: response.data,
-          });
-        }
-      );
+      axios(
+        "https://the-amazing-pokeword.herokuapp.com/pokemons?name=" + name,
+        {}
+      ).then((response) => {
+        return dispatch({
+          type: GET_POKEMON_BY_NAME,
+          payload: response.data,
+        });
+      });
     } catch (err) {
       console.log(err);
     }
@@ -45,7 +48,10 @@ export const getPokemonByName = (name) => {
 export const getPokemonById = (id) => {
   return async function (dispatch) {
     try {
-      let response = await axios("http://localhost:3001/pokemons/" + id, {});
+      let response = await axios(
+        "https://the-amazing-pokeword.herokuapp.com/pokemons/" + id,
+        {}
+      );
       return dispatch({
         type: GET_POKEMON_BY_ID,
         payload: response.data,
@@ -76,9 +82,11 @@ export const filterCreated = (payload) => {
 export const getAllTypes = () => {
   return function (dispatch) {
     try {
-      axios("http://localhost:3001/types", {}).then((response) => {
-        return dispatch({ type: GET_ALL_TYPES, payload: response.data });
-      });
+      axios("https://the-amazing-pokeword.herokuapp.com/types", {}).then(
+        (response) => {
+          return dispatch({ type: GET_ALL_TYPES, payload: response.data });
+        }
+      );
     } catch (err) {
       console.log(err);
     }
@@ -97,12 +105,14 @@ export const order = (payload) => {
 export const createPokemon = (payload) => {
   return function (dispatch) {
     try {
-      axios.post("http://localhost:3001/pokemons", payload).then((response) => {
-        return dispatch({
-          type: CREATE_POKEMON,
-          payload: response.data,
+      axios
+        .post("https://the-amazing-pokeword.herokuapp.com/pokemons", payload)
+        .then((response) => {
+          return dispatch({
+            type: CREATE_POKEMON,
+            payload: response.data,
+          });
         });
-      });
     } catch (err) {
       console.log(err);
     }
@@ -114,7 +124,7 @@ export const deletePokemonById = (id) => {
   return async function (dispatch) {
     try {
       let response = await axios.delete(
-        "http://localhost:3001/delete/" + id,
+        "https://the-amazing-pokeword.herokuapp.com/delete/" + id,
         {}
       );
       return dispatch({

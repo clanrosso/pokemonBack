@@ -7,7 +7,7 @@
   min-width: 100vh;
   background-image: url("https://res.cloudinary.com/dtrsxymgq/image/upload/c_scale,h_2400,w_5000/v1664413879/Pokemon/pexels-abhishek-rana-4188296_oaqnog.jpg");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: left;
   padding: 0px;
   margin: 0px;
@@ -28,7 +28,7 @@
 
 .textLanding {
   font-family: "Poppins", sans-serif;
-  font-size: 0.7cm;
+  font-size: 2.2rem;
   font-weight: 300;
   color: #078729cb !important;
   margin-top: 0px;
@@ -41,7 +41,7 @@
   padding: 0px;
   text-decoration: none;
   font-family: "Shadows Into Light", cursive;
-  font-size: 2.5cm;
+  font-size: 6.5rem;
   font-style: italic;
   font-weight: 900;
   font-variant: small-caps;
@@ -51,7 +51,7 @@
 }
 
 .buttonLanding {
-  font-size: 1cm;
+  font-size: 2.4rem;
   font-weight: 700;
   font-family: "Poppins", sans-serif;
   background-color: #ffd700;
@@ -65,4 +65,125 @@
 .buttonLanding:hover {
   text-decoration: none;
   background: #f6da3a;
+}
+
+@media only screen and (min-width: 310px) and (max-width: 700px) {
+  .landing {
+    min-height: 100vh;
+    max-height: 600px;
+    min-width: 100vh;
+    background-image: url("https://res.cloudinary.com/dtrsxymgq/image/upload/c_scale,h_550,w_1350/v1664413879/Pokemon/pexels-abhishek-rana-4188296_oaqnog.jpg");
+    background-size: cover;
+    flex-direction: column;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+
+  .textLanding {
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #078729cb !important;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    padding: 0px;
+  }
+
+  .titleLanding {
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    font-family: "Shadows Into Light", cursive;
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: 900;
+    font-variant: small-caps;
+    font-stretch: expanded;
+    color: #ffd700 !important;
+    text-shadow: 1px 1px 8px rgba(20, 19, 19, 0.63);
+  }
+
+  .buttonLanding {
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    background-color: #ffd700;
+    border-color: #ffd700;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 8px;
+    padding: 5px;
+  }
+
+  .buttonLanding:hover {
+    text-decoration: none;
+    background: #f6da3a;
+  }
+}
+
+@media only screen and (min-width: 100px) and (max-width: 310px) {
+  .landing {
+    min-height: 100vh;
+    max-height: 600px;
+    min-width: 100vh;
+    background-image: url("https://res.cloudinary.com/dtrsxymgq/image/upload/c_scale,h_500,w_500/v1664413879/Pokemon/pexels-abhishek-rana-4188296_oaqnog.jpg");
+    background-size: cover;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    flex-direction: column;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .internoLanding {
+    margin-right: 0px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .textLanding {
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #078729cb !important;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    padding: 0px;
+  }
+
+  .titleLanding {
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    font-family: "Shadows Into Light", cursive;
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: 900;
+    font-variant: small-caps;
+    font-stretch: expanded;
+    color: #ffd700 !important;
+    text-shadow: 1px 1px 8px rgba(20, 19, 19, 0.63);
+  }
+
+  .buttonLanding {
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+    background-color: #ffd700;
+    border-color: #ffd700;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 8px;
+    padding: 5px;
+  }
+
+  .buttonLanding:hover {
+    text-decoration: none;
+    background: #f6da3a;
+  }
 }

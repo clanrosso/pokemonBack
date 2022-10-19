@@ -31,3 +31,6 @@
   padding: 3px 5px;
   border-radius: 35px;
 }
+
+@media only screen and (min-width: 300px) and (max-width: 500px) {
+}

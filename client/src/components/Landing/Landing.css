@@ -67,17 +67,17 @@
   background: #f6da3a;
 }
 
-@media only screen and (min-width: 310px) and (max-width: 700px) {
+@media only screen and (min-width: 450px) and (max-width: 860px) {
   .landing {
-    min-height: 100vh;
-    max-height: 600px;
-    min-width: 100vh;
-    background-image: url("https://res.cloudinary.com/dtrsxymgq/image/upload/c_scale,h_550,w_1350/v1664413879/Pokemon/pexels-abhishek-rana-4188296_oaqnog.jpg");
+    height: 100vh;
+    width: 100vh;
+    background-image: url("https://res.cloudinary.com/dtrsxymgq/image/upload/c_scale,h_500,w_1000/v1664413879/Pokemon/pexels-abhishek-rana-4188296_oaqnog.jpg");
     background-size: cover;
+    background-repeat: no-repeat;
     flex-direction: column;
     display: flex;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: center;
   }
 
   .textLanding {
@@ -122,24 +122,23 @@
   }
 }
 
-@media only screen and (min-width: 100px) and (max-width: 310px) {
+@media only screen and (min-width: 100px) and (max-width: 450px) {
   .landing {
-    min-height: 100vh;
-    max-height: 600px;
-    min-width: 100vh;
-    background-image: url("https://res.cloudinary.com/dtrsxymgq/image/upload/c_scale,h_500,w_500/v1664413879/Pokemon/pexels-abhishek-rana-4188296_oaqnog.jpg");
+    height: 100vh;
+    width: 100vh;
+    background-image: url("https://res.cloudinary.com/dtrsxymgq/image/upload/c_scale,h_1000,w_1000/v1664413879/Pokemon/pexels-abhishek-rana-4188296_oaqnog.jpg");
     background-size: cover;
+    background-repeat: no-repeat;
     padding: 0px;
     margin: 0px;
     border: 0px;
     flex-direction: column;
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
   }
 
   .internoLanding {
-    margin-right: 0px;
+    margin: 0px;
     flex-direction: column;
     display: flex;
     justify-content: center;
@@ -148,7 +147,7 @@
 
   .textLanding {
     font-family: "Poppins", sans-serif;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 300;
     color: #078729cb !important;
     margin-top: 0px;
@@ -161,7 +160,7 @@
     padding: 0px;
     text-decoration: none;
     font-family: "Shadows Into Light", cursive;
-    font-size: 2rem;
+    font-size: 2.7rem;
     font-style: italic;
     font-weight: 900;
     font-variant: small-caps;
@@ -171,7 +170,7 @@
   }
 
   .buttonLanding {
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 700;
     font-family: "Poppins", sans-serif;
     background-color: #ffd700;

@@ -5,13 +5,8 @@ const path = require("path");
 const { DB_RAILWAY } = process.env;
 
 const sequelize = new Sequelize(DB_RAILWAY, {
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-  },
   logging: false,
+  native: false,
 });
 
 const basename = path.basename(__filename);

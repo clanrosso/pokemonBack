@@ -2,12 +2,15 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { DB_RAILWAY } = process.env;
+//const { DB_RAILWAY } = process.env;
 
-const sequelize = new Sequelize(DB_RAILWAY, {
-  logging: false,
-  native: false,
-});
+const sequelize = new Sequelize(
+  "postgresql://postgres:4LBdWDqhFmrQe0XjNQBl@containers-us-west-120.railway.app:7225/railway",
+  {
+    logging: false,
+    native: false,
+  }
+);
 
 const basename = path.basename(__filename);
 

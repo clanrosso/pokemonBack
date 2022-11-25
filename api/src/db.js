@@ -2,20 +2,17 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-//const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const { DB_RAILWAY } = process.env;
 
-const sequelize = new Sequelize(
-  "postgres://ysethypuqgphet:65b7cd96762237b9d4b58daabca55438526e2ca1b2b3560848681efd69fb1755@ec2-34-251-115-141.eu-west-1.compute.amazonaws.com:5432/d8r628ro08rum1",
-  {
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
+const sequelize = new Sequelize(DB_RAILWAY, {
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
     },
-    logging: false,
-  }
-);
+  },
+  logging: false,
+});
 
 const basename = path.basename(__filename);
 

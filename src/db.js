@@ -5,7 +5,7 @@ const path = require("path");
 const { DB_RENDER, DB_RAILWAY } = process.env;
 
 const sequelize = new Sequelize(
-  "postgres://pokemon_ih6v_user:VTp7OjRTmFYNBpoLqbY4Gf9zrPS5kpoh@dpg-ce0dudo2i3mkucct1n30-a:5432/pokemon_ih6v",
+  "postgres://pokemon_ih6v_user:VTp7OjRTmFYNBpoLqbY4Gf9zrPS5kpoh@dpg-ce0dudo2i3mkucct1n30-a/pokemon_ih6v",
   {
     logging: false,
     native: false,

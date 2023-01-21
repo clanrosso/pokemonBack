@@ -3,7 +3,7 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { DB_RENDER, DB_RAILWAY } = process.env;
-/*
+
 const sequelize = new Sequelize(DB_RENDER, {
   logging: false,
   native: false,
@@ -13,12 +13,12 @@ const sequelize = new Sequelize(DB_RENDER, {
     },
   },
 });
-*/
+/*
 const sequelize = new Sequelize(DB_RAILWAY, {
   logging: false,
   native: false,
 });
-
+*/
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
